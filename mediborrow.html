@@ -42,115 +42,122 @@
 
     <!-- Header / Navigation Bar -->
     <header class="bg-white shadow-sm sticky top-0 z-40 border-b border-gray-100">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-            <!-- Brand / Logo -->
-            <div class="flex items-center space-x-3 cursor-pointer" onclick="switchView('home')">
+        <div class="max-w-[96rem] mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
+            
+            <!-- โลโก้และชื่อระบบฝั่งซ้าย -->
+            <div class="flex items-center space-x-3 cursor-pointer shrink-0" onclick="switchView('home')">
                 <div class="w-12 h-12 bg-medical-600 rounded-2xl flex items-center justify-center text-white shadow-lg shadow-medical-500/30">
                     <i class="fa-solid fa-hand-holding-medical text-2xl"></i>
                 </div>
                 <div>
-                    <h1 class="text-xl font-bold text-gray-900 tracking-tight">MediBorrow</h1>
-                    <p class="text-xs text-medical-700 font-medium">รพ.สต. ทับใต้ อ.หัวหิน จ.ประจวบคีรีขันธ์</p>
+                    <div class="flex items-center space-x-2">
+                        <h1 class="text-xl font-bold text-gray-900 tracking-tight">MediBorrow</h1>
+                        <span class="px-2 py-0.5 rounded-full text-xs font-semibold bg-medical-50 text-medical-700 border border-medical-200">รพ.สต. ทับใต้</span>
+                    </div>
+                    <p class="text-xs text-gray-500 font-medium">โรงพยาบาลส่งเสริมสุขภาพตำบลทับใต้ อ.หัวหิน</p>
                 </div>
             </div>
 
-            <!-- Desktop Navigation Links (Guest Mode) -->
-            <nav id="nav-guest-links" class="hidden md:flex items-center space-x-1 lg:space-x-2">
-                <button onclick="switchView('home')" id="nav-home" class="nav-btn px-4 py-2 rounded-xl text-sm font-semibold text-medical-700 bg-medical-50 transition-all flex items-center space-x-2">
+            <!-- Guest Navigation (แสดงตอนยังไม่เข้าสู่ระบบ) -->
+            <nav id="nav-guest-links" class="hidden md:flex items-center space-x-1">
+                <button onclick="switchView('home')" class="px-4 py-2 rounded-xl text-sm font-semibold text-medical-700 bg-medical-50 flex items-center space-x-2">
                     <i class="fa-solid fa-house"></i><span>หน้าแรก</span>
                 </button>
-                <button onclick="switchView('catalog')" id="nav-catalog" class="nav-btn px-4 py-2 rounded-xl text-sm font-medium text-gray-600 hover:text-medical-600 hover:bg-gray-50 transition-all flex items-center space-x-2">
+                <button onclick="switchView('catalog')" class="px-4 py-2 rounded-xl text-sm font-medium text-gray-600 hover:text-medical-600 flex items-center space-x-2">
                     <i class="fa-solid fa-box-archive"></i><span>รายการอุปกรณ์</span>
                 </button>
-                <button onclick="switchView('tracking')" id="nav-tracking" class="nav-btn px-4 py-2 rounded-xl text-sm font-medium text-gray-600 hover:text-medical-600 hover:bg-gray-50 transition-all flex items-center space-x-2">
+                <button onclick="switchView('tracking')" class="px-4 py-2 rounded-xl text-sm font-medium text-gray-600 hover:text-medical-600 flex items-center space-x-2">
                     <i class="fa-solid fa-clipboard-list"></i><span>ติดตามสถานะ</span>
                 </button>
-                <button onclick="switchView('contact')" id="nav-contact" class="nav-btn px-4 py-2 rounded-xl text-sm font-medium text-gray-600 hover:text-medical-600 hover:bg-gray-50 transition-all flex items-center space-x-2">
+                <button onclick="switchView('contact')" class="px-4 py-2 rounded-xl text-sm font-medium text-gray-600 hover:text-medical-600 flex items-center space-x-2">
                     <i class="fa-solid fa-phone-volume"></i><span>ติดต่อเรา</span>
                 </button>
             </nav>
 
-            <!-- Desktop Navigation Links (Staff Mode - ตามรูปตัวอย่าง) -->
-            <nav id="nav-staff-links" class="hidden items-center space-x-1 lg:space-x-2">
-                <button onclick="switchView('catalog')" class="px-3.5 py-2 rounded-xl text-sm font-semibold text-medical-700 bg-medical-50 transition-all flex items-center space-x-1.5">
+            <!-- Staff Navigation (แสดงเฉพาะเมื่อเข้าสู่ระบบเจ้าหน้าที่แล้ว - เรียงตามรูปเป๊ะๆ) -->
+            <nav id="nav-staff-links" class="hidden items-center space-x-2 overflow-x-auto py-2">
+                <!-- 1. คลังอุปกรณ์ -->
+                <button onclick="switchView('catalog')" class="px-3.5 py-2 rounded-xl text-xs font-semibold text-medical-700 bg-medical-50 border border-medical-100 flex items-center space-x-2 whitespace-nowrap">
                     <i class="fa-solid fa-box text-medical-600"></i><span>คลังอุปกรณ์</span>
                 </button>
-                <button onclick="switchView('borrow-list')" class="px-3.5 py-2 rounded-xl text-sm font-medium text-gray-600 hover:text-medical-600 hover:bg-gray-50 transition-all flex items-center space-x-1.5">
+                <!-- 2. รายการยืม-คืน -->
+                <button onclick="switchView('borrow-list')" class="px-3.5 py-2 rounded-xl text-xs font-medium text-gray-600 hover:bg-gray-50 flex items-center space-x-2 whitespace-nowrap">
                     <i class="fa-solid fa-right-left text-gray-400"></i><span>รายการยืม-คืน</span>
                 </button>
-                <button onclick="switchView('borrowers')" class="px-3.5 py-2 rounded-xl text-sm font-medium text-gray-600 hover:text-medical-600 hover:bg-gray-50 transition-all flex items-center space-x-1.5">
+                <!-- 3. ข้อมูลผู้ยืม -->
+                <button onclick="switchView('borrowers')" class="px-3.5 py-2 rounded-xl text-xs font-medium text-gray-600 hover:bg-gray-50 flex items-center space-x-2 whitespace-nowrap">
                     <i class="fa-solid fa-users text-gray-400"></i><span>ข้อมูลผู้ยืม</span>
                 </button>
-                <button onclick="switchView('staff-manage')" class="px-3.5 py-2 rounded-xl text-sm font-medium text-gray-600 hover:text-medical-600 hover:bg-gray-50 transition-all flex items-center space-x-1.5">
+                <!-- 4. เจ้าหน้าที่ -->
+                <button onclick="switchView('staff-manage')" class="px-3.5 py-2 rounded-xl text-xs font-medium text-gray-600 hover:bg-gray-50 flex items-center space-x-2 whitespace-nowrap">
                     <i class="fa-solid fa-user-shield text-gray-400"></i><span>เจ้าหน้าที่</span>
                 </button>
-                <button onclick="resetDemoData()" class="px-3 py-2 rounded-xl text-xs font-semibold text-amber-700 bg-amber-50 hover:bg-amber-100 transition-all flex items-center space-x-1 border border-amber-200">
-                    <i class="fa-solid fa-rotate-right"></i><span>รีเซ็ตข้อมูลเดโม</span>
+                <!-- 5. รีเซ็ตข้อมูลเดโม (ปุ่มเหลืองอ่อน) -->
+                <button onclick="resetDemoData()" class="px-3.5 py-2 rounded-xl text-xs font-semibold text-amber-800 bg-amber-50 hover:bg-amber-100 border border-amber-200 flex items-center space-x-1.5 whitespace-nowrap shadow-sm">
+                    <i class="fa-solid fa-rotate-right text-amber-600"></i><span>รีเซ็ตข้อมูลเดโม</span>
                 </button>
-                <button onclick="openQrModal()" class="px-3 py-2 rounded-xl text-xs font-semibold text-gray-700 bg-gray-100 hover:bg-gray-200 transition-all flex items-center space-x-1">
-                    <i class="fa-solid fa-qrcode"></i><span>QR ประชาชน</span>
+                <!-- 6. QR ประชาชน -->
+                <button onclick="openQrModal()" class="px-3.5 py-2 rounded-xl text-xs font-semibold text-gray-700 bg-gray-50 hover:bg-gray-100 border border-gray-200 flex items-center space-x-1.5 whitespace-nowrap">
+                    <i class="fa-solid fa-qrcode text-gray-500"></i><span>QR ประชาชน</span>
                 </button>
-                <button onclick="exportData()" class="px-3 py-2 rounded-xl text-xs font-semibold text-medical-700 bg-medical-50 hover:bg-medical-100 transition-all flex items-center space-x-1 border border-medical-200">
-                    <i class="fa-solid fa-file-excel"></i><span>Export</span>
+                <!-- 7. Export -->
+                <button onclick="exportData()" class="px-3.5 py-2 rounded-xl text-xs font-semibold text-medical-700 bg-medical-50 hover:bg-medical-100 border border-medical-200 flex items-center space-x-1.5 whitespace-nowrap">
+                    <i class="fa-solid fa-file-excel text-medical-600"></i><span>Export</span>
                 </button>
             </nav>
 
-            <!-- User Auth Actions / Profile -->
-            <div id="auth-guest-section" class="flex items-center space-x-2">
+            <!-- ฝั่งขวา: ปุ่มเข้าสู่ระบบ (Guest) หรือ โปรไฟล์เจ้าหน้าที่ (Staff) -->
+            <div id="auth-guest-section" class="flex items-center space-x-2 shrink-0">
                 <button onclick="openModal('loginModal')" class="px-4 py-2 text-sm font-semibold text-gray-700 hover:text-medical-600">
                     <i class="fa-solid fa-right-to-bracket mr-1.5"></i> เข้าสู่ระบบ
                 </button>
-                
-                <button onclick="openModal('staffModal')" class="px-4 py-2 text-sm font-semibold text-medical-600 hover:text-medical-700 border border-medical-300 rounded-xl transition-colors">
+                <button onclick="openModal('staffModal')" class="px-4 py-2 text-sm font-semibold text-medical-600 hover:text-medical-700 border border-medical-300 rounded-xl">
                     <i class="fa-solid fa-user-shield mr-1.5"></i> เจ้าหน้าที่
                 </button>
-
                 <button onclick="openModal('registerModal')" class="px-4 py-2 text-sm font-semibold text-white bg-medical-600 rounded-xl hover:bg-medical-700">
                     <i class="fa-solid fa-user-plus mr-1.5"></i> สมัครสมาชิก
                 </button>
             </div>
 
-            <!-- User Profile (Staff Mode Profile & Logout) -->
-            <div id="auth-user-section" class="hidden flex items-center space-x-3">
-                <div class="flex items-center space-x-2 bg-gray-50 border border-gray-200 px-3.5 py-1.5 rounded-2xl shadow-sm">
-                    <div class="w-8 h-8 rounded-full bg-medical-100 text-medical-700 flex items-center justify-center font-bold text-sm">
+            <!-- 8. โปรไฟล์เจ้าหน้าที่ และ ปุ่มออกจากระบบ (ตามรูป) -->
+            <div id="auth-user-section" class="hidden flex items-center space-x-2 shrink-0">
+                <div class="flex items-center space-x-2 bg-medical-50/50 border border-medical-200 px-3.5 py-1.5 rounded-2xl">
+                    <div class="w-7 h-7 rounded-full bg-medical-600 text-white flex items-center justify-center text-xs">
                         <i class="fa-solid fa-user-tie"></i>
                     </div>
-                    <span class="text-sm font-semibold text-gray-800" id="user-display-name">นางสาวศิรภัสสร สา... <span class="text-[10px] bg-medical-100 text-medical-700 px-1.5 py-0.5 rounded font-bold ml-1">จนท.</span></span>
+                    <span class="text-xs font-bold text-gray-800" id="user-display-name">
+                        นางสาวศิรภัสสร สา... <span class="text-[10px] bg-medical-100 text-medical-700 px-1.5 py-0.5 rounded font-bold ml-1">จนท.</span>
+                    </span>
                 </div>
-                <button onclick="logout()" class="p-2.5 text-gray-400 hover:text-red-600 rounded-xl hover:bg-red-50 transition-all border border-gray-200" title="ออกจากระบบ">
+                <button onclick="logout()" class="p-2.5 text-gray-400 hover:text-red-600 rounded-xl hover:bg-red-50 border border-gray-200 transition-all" title="ออกจากระบบ">
                     <i class="fa-solid fa-right-from-bracket text-base"></i>
                 </button>
             </div>
 
-            <!-- Mobile Menu Button -->
-            <button onclick="toggleMobileMenu()" class="md:hidden p-2.5 text-gray-600 hover:text-medical-600 rounded-xl hover:bg-gray-100 transition-all">
-                <i class="fa-solid fa-bars text-xl"></i>
-            </button>
         </div>
     </header>
 
     <!-- Main Content Container -->
     <main class="flex-grow">
 
-        <!-- VIEW 1: HOME VIEW (Guest) -->
+        <!-- VIEW 1: HOME VIEW -->
         <section id="view-home" class="tab-content active">
-            <div class="relative bg-gradient-to-br from-medical-900 via-medical-800 to-medical-700 text-white overflow-hidden py-16 lg:py-24">
-                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-                    <h2 class="text-3xl sm:text-5xl font-bold tracking-tight mb-4">ระบบยืม-คืนอุปกรณ์ทางการแพทย์ รพ.สต. ทับใต้</h2>
-                    <p class="text-lg text-medical-100 max-w-2xl mx-auto mb-8">อำนวยความสะดวกให้ผู้ป่วยและผู้สูงอายุในพื้นที่ตำบลทับใต้ เข้าถึงอุปกรณ์จำเป็นได้อย่างรวดเร็ว</p>
-                    <button onclick="openModal('staffModal')" class="px-8 py-4 bg-medical-500 hover:bg-medical-600 text-white font-bold rounded-2xl shadow-xl transition-all text-lg">
+            <div class="relative bg-gradient-to-br from-medical-900 via-medical-800 to-medical-700 text-white overflow-hidden py-20">
+                <div class="max-w-7xl mx-auto px-4 text-center space-y-6">
+                    <h2 class="text-4xl font-bold">ระบบยืม-คืนอุปกรณ์ทางการแพทย์ รพ.สต. ทับใต้</h2>
+                    <p class="text-medical-100 max-w-xl mx-auto">อำนวยความสะดวกประชาชนในการยืมอุปกรณ์การแพทย์ รวดเร็วและโปร่งใส</p>
+                    <button onclick="openModal('staffModal')" class="px-8 py-3.5 bg-medical-500 hover:bg-medical-600 text-white font-bold rounded-2xl shadow-xl">
                         <i class="fa-solid fa-user-shield mr-2"></i> เข้าสู่ระบบสำหรับเจ้าหน้าที่
                     </button>
                 </div>
             </div>
         </section>
 
-        <!-- VIEW 2: STAFF DASHBOARD / CATALOG (แสดงเมื่อเจ้าหน้าที่เข้าสู่ระบบแล้ว ตามรูป) -->
+        <!-- VIEW 2: STAFF DASHBOARD / CATALOG (หน้าหลักหลังเข้าสู่ระบบเจ้าหน้าที่ ตามรูปที่ 2) -->
         <section id="view-catalog" class="tab-content py-8">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
                 
-                <!-- ส่วนหัวกล่องจัดการคลังอุปกรณ์ -->
+                <!-- กล่องหัวข้อคลังอุปกรณ์ -->
                 <div class="bg-white p-6 sm:p-8 rounded-3xl border border-gray-100 shadow-sm flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                     <div>
                         <div class="flex items-center space-x-3 mb-1">
@@ -161,15 +168,15 @@
                         </div>
                         <p class="text-sm text-gray-500">ทะเบียนพัสดุและอุปกรณ์กายภาพบำบัดสำหรับยืมดูแลผู้ป่วยติดเตียงและผู้สูงอายุในตำบลทับใต้</p>
                     </div>
-                    <button onclick="openModal('addEquipmentModal')" class="px-5 py-3 bg-medical-600 hover:bg-medical-700 text-white font-bold rounded-2xl shadow-lg shadow-medical-600/20 transition-all flex items-center justify-center space-x-2 whitespace-nowrap">
+                    <button onclick="openModal('addEquipmentModal')" class="px-5 py-3 bg-medical-600 hover:bg-medical-700 text-white font-bold rounded-2xl shadow-lg shadow-medical-600/20 flex items-center justify-center space-x-2 shrink-0">
                         <i class="fa-solid fa-plus"></i><span>เพิ่มอุปกรณ์ใหม่</span>
                     </button>
                 </div>
 
-                <!-- กล่องแจ้งเตือนคำขอรอดำเนินการ -->
+                <!-- กล่องแจ้งเตือนคำขอยืมรอดำเนินการ -->
                 <div class="bg-blue-50/60 border border-blue-100 p-5 rounded-3xl flex items-center justify-between shadow-sm">
                     <div class="flex items-center space-x-4">
-                        <div class="w-10 h-10 rounded-xl bg-blue-600 text-white flex items-center justify-center text-lg shadow-md">
+                        <div class="w-10 h-10 rounded-xl bg-blue-600 text-white flex items-center justify-center text-lg">
                             <i class="fa-solid fa-circle-exclamation"></i>
                         </div>
                         <div>
@@ -177,7 +184,7 @@
                             <p class="text-xs text-gray-500">มีประชาชนยื่นขอจองอุปกรณ์ออนไลน์</p>
                         </div>
                     </div>
-                    <button onclick="switchView('borrow-list')" class="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold rounded-xl shadow-md transition-all">
+                    <button onclick="switchView('borrow-list')" class="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold rounded-xl shadow-md">
                         1 รายการ
                     </button>
                 </div>
@@ -221,7 +228,7 @@
                             <i class="fa-solid fa-magnifying-glass absolute left-4 top-3.5 text-gray-400"></i>
                             <input type="text" placeholder="ค้นหาชื่ออุปกรณ์, รหัสพัสดุ (เช่น EQ001), หรือหมวดหมู่..." class="w-full pl-11 pr-4 py-2.5 bg-gray-50 border border-gray-200 rounded-2xl text-sm focus:outline-none focus:ring-2 focus:ring-medical-500">
                         </div>
-                        <button class="px-5 py-2.5 bg-gray-100 hover:bg-gray-200 text-gray-700 font-semibold rounded-2xl text-sm transition-all flex items-center justify-center space-x-2">
+                        <button class="px-5 py-2.5 bg-gray-100 hover:bg-gray-200 text-gray-700 font-semibold rounded-2xl text-sm flex items-center justify-center space-x-2">
                             <i class="fa-solid fa-rotate"></i><span>รีเฟรช</span>
                         </button>
                     </div>
@@ -239,15 +246,11 @@
         </section>
 
         <!-- VIEW: หน้าอื่นๆ สำรองไว้ -->
-        <section id="view-borrow-list" class="tab-content py-12 text-center">
-            <h2 class="text-2xl font-bold">รายการยืม-คืน</h2>
-        </section>
-        <section id="view-borrowers" class="tab-content py-12 text-center">
-            <h2 class="text-2xl font-bold">ข้อมูลผู้ยืม</h2>
-        </section>
-        <section id="view-staff-manage" class="tab-content py-12 text-center">
-            <h2 class="text-2xl font-bold">จัดการเจ้าหน้าที่</h2>
-        </section>
+        <section id="view-borrow-list" class="tab-content py-12 text-center"><h2 class="text-2xl font-bold">รายการยืม-คืน</h2></section>
+        <section id="view-borrowers" class="tab-content py-12 text-center"><h2 class="text-2xl font-bold">ข้อมูลผู้ยืม</h2></section>
+        <section id="view-staff-manage" class="tab-content py-12 text-center"><h2 class="text-2xl font-bold">จัดการเจ้าหน้าที่</h2></section>
+        <section id="view-tracking" class="tab-content py-12 text-center"><h2 class="text-2xl font-bold">ติดตามสถานะ</h2></section>
+        <section id="view-contact" class="tab-content py-12 text-center"><h2 class="text-2xl font-bold">ติดต่อเรา</h2></section>
 
     </main>
 
@@ -339,7 +342,7 @@
             }
         }
 
-        // ฟังก์ชันจัดการเข้าสู่ระบบของเจ้าหน้าที่ (เปลี่ยนหน้าตา Navbar และ Dashboard เป็นโหมดเจ้าหน้าที่เต็มรูปแบบ)
+        // ฟังก์ชันจัดการเข้าสู่ระบบของเจ้าหน้าที่
         function handleStaffLogin(event) {
             event.preventDefault();
             
@@ -347,29 +350,30 @@
             closeModal('staffModal');
             showToast('เข้าสู่ระบบเจ้าหน้าที่สำเร็จ', 'success');
             
-            // 2. ซ่อนเมนูและปุ่มฝั่ง Guest
+            // 2. ซ่อนเมนูฝั่ง Guest
             document.getElementById('nav-guest-links').classList.add('hidden');
             document.getElementById('auth-guest-section').classList.add('hidden');
             
-            // 3. แสดงเมนูพิเศษและโปรไฟล์ฝั่ง Staff (ตามรูปตัวอย่าง)
+            // 3. แสดงเมนูพิเศษและโปรไฟล์ฝั่ง Staff ครบชุดตามรูป
             const staffNav = document.getElementById('nav-staff-links');
             staffNav.classList.remove('hidden');
             staffNav.classList.add('flex');
             
             document.getElementById('auth-user-section').classList.remove('hidden');
+            document.getElementById('auth-user-section').classList.add('flex');
             
-            // 4. สลับหน้าจอหลักไปที่หน้าคลังอุปกรณ์ของเจ้าหน้าที่
+            // 4. สลับมุมมองไปที่หน้าคลังอุปกรณ์
             switchView('catalog');
         }
 
         function logout() {
-            // คืนค่ากลับสู่โหมดหน้าแรกทั่วไป
-            document.getElementById('nav-staff-links.hidden');
+            // คืนค่ากลับสู่โหมด Guest
             document.getElementById('nav-staff-links').classList.add('hidden');
             document.getElementById('nav-staff-links').classList.remove('flex');
+            document.getElementById('auth-user-section').classList.add('hidden');
+            document.getElementById('auth-user-section').classList.remove('flex');
             
             document.getElementById('nav-guest-links').classList.remove('hidden');
-            document.getElementById('auth-user-section').classList.add('hidden');
             document.getElementById('auth-guest-section').classList.remove('hidden');
             
             switchView('home');

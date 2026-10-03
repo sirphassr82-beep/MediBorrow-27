@@ -71,94 +71,38 @@
             </nav>
 
             <!-- User Auth Actions / Profile -->
-           <div id="auth-guest-section" class="flex items-center space-x-2">
-    <button onclick="openModal('loginModal')" class="px-4 py-2 text-sm font-semibold text-gray-700 hover:text-medical-600">
-        <i class="fa-solid fa-right-to-bracket mr-1.5"></i> เข้าสู่ระบบ
-    </button>
-    
-    <!-- ปุ่มเข้าสู่ระบบเจ้าหน้าที่ -->
-    <button onclick="openModal('staffModal')" class="px-4 py-2 text-sm font-semibold text-medical-600 hover:text-medical-700 border border-medical-300 rounded-xl transition-colors">
-        <i class="fa-solid fa-user-shield mr-1.5"></i> เจ้าหน้าที่
-    </button>
+            <div id="auth-guest-section" class="flex items-center space-x-2">
+                <button onclick="openModal('loginModal')" class="px-4 py-2 text-sm font-semibold text-gray-700 hover:text-medical-600">
+                    <i class="fa-solid fa-right-to-bracket mr-1.5"></i> เข้าสู่ระบบ
+                </button>
+                
+                <!-- ปุ่มเข้าสู่ระบบเจ้าหน้าที่ -->
+                <button onclick="openModal('staffModal')" class="px-4 py-2 text-sm font-semibold text-medical-600 hover:text-medical-700 border border-medical-300 rounded-xl transition-colors">
+                    <i class="fa-solid fa-user-shield mr-1.5"></i> เจ้าหน้าที่
+                </button>
 
-    <button onclick="openModal('registerModal')" class="px-4 py-2 text-sm font-semibold text-white bg-medical-600 rounded-xl hover:bg-medical-700">
-        <i class="fa-solid fa-user-plus mr-1.5"></i> สมัครสมาชิก
-    </button>
-</div>
-<!-- STAFF LOGIN MODAL -->
-<div id="staffModal" class="fixed inset-0 z-50 hidden bg-black/50 backdrop-blur-sm flex items-center justify-center p-4">
-    <div class="bg-white w-full max-w-lg rounded-3xl shadow-2xl p-6 sm:p-8 relative max-h-[90vh] overflow-y-auto">
-        <!-- ปุ่มปิด (X) -->
-        <button onclick="closeModal('staffModal')" class="absolute top-6 right-6 text-gray-400 hover:text-gray-600">
-            <i class="fa-solid fa-xmark text-xl"></i>
-        </button>
-
-        <!-- หัวข้อ -->
-        <div class="mb-6">
-            <div class="flex items-center space-x-3 mb-1">
-                <div class="w-10 h-10 rounded-xl bg-medical-50 text-medical-600 flex items-center justify-center text-lg">
-                    <i class="fa-solid fa-shield-halved"></i>
-                </div>
-                <div>
-                    <h3 class="text-lg font-bold text-gray-900">เข้าสู่ระบบสำหรับเจ้าหน้าที่ รพ.สต. ทับใต้</h3>
-                    <p class="text-xs text-gray-500">ระบบบริหารจัดการคลังครุภัณฑ์และการยืม-คืนอุปกรณ์ทางการแพทย์</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- ฟอร์มเข้าสู่ระบบเจ้าหน้าที่ -->
-        <form onsubmit="handleStaffLogin(event)" class="space-y-4">
-            <div>
-                <label class="block text-xs font-bold text-gray-700 mb-1">ชื่อผู้ใช้ (Username) *</label>
-                <div class="relative">
-                    <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center text-gray-400">
-                        <i class="fa-solid fa-user"></i>
-                    </span>
-                    <input type="text" id="staff-username" required value="0840905124" class="w-full pl-10 pr-4 py-2.5 bg-gray-50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-medical-500">
-                </div>
-            </div>
-            
-            <div>
-                <label class="block text-xs font-bold text-gray-700 mb-1">รหัสผ่าน (Password) *</label>
-                <div class="relative">
-                    <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center text-gray-400">
-                        <i class="fa-solid fa-lock"></i>
-                    </span>
-                    <input type="password" id="staff-password" required value="******" class="w-full pl-10 pr-10 py-2.5 bg-gray-50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-medical-500">
-                    <button type="button" onclick="toggleStaffPassword()" class="absolute inset-y-0 right-0 pr-3.5 flex items-center text-gray-400 hover:text-gray-600">
-                        <i id="staff-eye-icon" class="fa-solid fa-eye-slash"></i>
-                    </button>
-                </div>
-            </div>
-
-            <button type="submit" class="w-full py-3.5 bg-medical-600 hover:bg-medical-700 text-white font-bold rounded-xl transition-colors shadow-lg shadow-medical-600/20 flex items-center justify-center space-x-2">
-                <span>เข้าสู่ระบบเจ้าหน้าที่</span>
-                <i class="fa-solid fa-arrow-right"></i>
-            </button>
-        </form>
-
-        <!-- ส่วนท้าย Modal -->
-        <div class="mt-6 pt-4 border-t border-gray-100 text-center text-xs text-gray-400">
-            โรงพยาบาลส่งเสริมสุขภาพตำบลทับใต้ โทร. 032-510-123
-        </div>
-    </div>
-</div>
-                <div id="auth-user-section" class="hidden flex items-center space-x-3">
-                    <div class="flex items-center space-x-2 bg-gray-100 px-3 py-1.5 rounded-xl">
-                        <div class="w-8 h-8 rounded-full bg-medical-600 text-white flex items-center justify-center font-bold text-sm" id="user-avatar">
-                            ส
-                        </div>
-                        <span class="text-sm font-semibold text-gray-700" id="user-display-name">ชื่อผู้ใช้</span>
-                    </div>
-                    <button onclick="logout()" class="p-2 text-gray-400 hover:text-red-600 rounded-xl hover:bg-red-50 transition-all" title="ออกจากระบบ">
-                        <i class="fa-solid fa-power-off text-lg"></i>
-                    </button>
-                </div>
-                <!-- Mobile Menu Button -->
-                <button onclick="toggleMobileMenu()" class="md:hidden p-2.5 text-gray-600 hover:text-medical-600 rounded-xl hover:bg-gray-100 transition-all">
-                    <i class="fa-solid fa-bars text-xl"></i>
+                <button onclick="openModal('registerModal')" class="px-4 py-2 text-sm font-semibold text-white bg-medical-600 rounded-xl hover:bg-medical-700">
+                    <i class="fa-solid fa-user-plus mr-1.5"></i> สมัครสมาชิก
                 </button>
             </div>
+
+            <!-- User Profile (Hidden by default until staff login) -->
+            <div id="auth-user-section" class="hidden flex items-center space-x-3">
+                <div class="flex items-center space-x-2 bg-gray-100 px-3 py-1.5 rounded-xl">
+                    <div class="w-8 h-8 rounded-full bg-medical-600 text-white flex items-center justify-center font-bold text-sm" id="user-avatar">
+                        ศ
+                    </div>
+                    <span class="text-sm font-semibold text-gray-700" id="user-display-name">ชื่อผู้ใช้</span>
+                </div>
+                <button onclick="logout()" class="p-2 text-gray-400 hover:text-red-600 rounded-xl hover:bg-red-50 transition-all" title="ออกจากระบบ">
+                    <i class="fa-solid fa-power-off text-lg"></i>
+                </button>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button onclick="toggleMobileMenu()" class="md:hidden p-2.5 text-gray-600 hover:text-medical-600 rounded-xl hover:bg-gray-100 transition-all">
+                <i class="fa-solid fa-bars text-xl"></i>
+            </button>
         </div>
 
         <!-- Mobile Menu Dropdown -->
@@ -253,25 +197,21 @@
                     <p class="text-gray-500 mt-2">รวดเร็ว สะดวก และไม่มีค่าใช้จ่ายในการยืม (สำหรับประชาชนในตำบลทับใต้)</p>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                    <!-- Step 1 -->
                     <div class="bg-white p-8 rounded-3xl border border-gray-100 shadow-sm hover:shadow-md transition-all relative">
                         <div class="w-12 h-12 bg-medical-50 text-medical-700 rounded-2xl flex items-center justify-center font-bold text-lg mb-6">01</div>
                         <h4 class="text-lg font-bold text-gray-900 mb-2">สมัครสมาชิก / เข้าสู่ระบบ</h4>
                         <p class="text-sm text-gray-500 leading-relaxed">ลงทะเบียนด้วยบัตรประชาชนและข้อมูลที่อยู่ตำบลทับใต้ หรือเข้าสู่ระบบด้วยบัญชีผู้ป่วย</p>
                     </div>
-                    <!-- Step 2 -->
                     <div class="bg-white p-8 rounded-3xl border border-gray-100 shadow-sm hover:shadow-md transition-all relative">
                         <div class="w-12 h-12 bg-medical-50 text-medical-700 rounded-2xl flex items-center justify-center font-bold text-lg mb-6">02</div>
                         <h4 class="text-lg font-bold text-gray-900 mb-2">เลือกอุปกรณ์ที่ต้องการ</h4>
                         <p class="text-sm text-gray-500 leading-relaxed">ค้นหาเตียงผู้ป่วย รถเข็น หรือเครื่องผลิตออกซิเจน พร้อมตรวจสอบจำนวนที่ว่างแบบเรียลไทม์</p>
                     </div>
-                    <!-- Step 3 -->
                     <div class="bg-white p-8 rounded-3xl border border-gray-100 shadow-sm hover:shadow-md transition-all relative">
                         <div class="w-12 h-12 bg-medical-50 text-medical-700 rounded-2xl flex items-center justify-center font-bold text-lg mb-6">03</div>
                         <h4 class="text-lg font-bold text-gray-900 mb-2">ยื่นคำขอจองยืม</h4>
                         <p class="text-sm text-gray-500 leading-relaxed">กรอกเหตุผลความจำเป็นหรือแนบใบรับรองแพทย์ (ถ้ามี) แล้วกดส่งคำขอจองอุปกรณ์</p>
                     </div>
-                    <!-- Step 4 -->
                     <div class="bg-white p-8 rounded-3xl border border-gray-100 shadow-sm hover:shadow-md transition-all relative">
                         <div class="w-12 h-12 bg-medical-50 text-medical-700 rounded-2xl flex items-center justify-center font-bold text-lg mb-6">04</div>
                         <h4 class="text-lg font-bold text-gray-900 mb-2">รับอุปกรณ์ / ติดตามสถานะ</h4>
@@ -284,16 +224,10 @@
         <!-- VIEW 2: CATALOG VIEW -->
         <section id="view-catalog" class="tab-content py-12">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <!-- Catalog Header -->
                 <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-8">
                     <div>
                         <h2 class="text-2xl font-bold text-gray-900">รายการอุปกรณ์ทางการแพทย์</h2>
                         <p class="text-sm text-gray-500">เลือกดูอุปกรณ์ที่พร้อมให้บริการยืมสำหรับผู้ป่วยและผู้สูงอายุ</p>
-                    </div>
-                    <div class="flex items-center space-x-3">
-                        <button onclick="openStaffModal()" id="staff-action-btn" class="hidden px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white rounded-xl text-sm font-semibold shadow-md transition-all flex items-center space-x-2">
-                            <i class="fa-solid fa-user-gear"></i><span>จัดการคลังอุปกรณ์ (เจ้าหน้าที่)</span>
-                        </button>
                     </div>
                 </div>
 
@@ -305,8 +239,7 @@
                     </div>
                     <div class="flex flex-wrap gap-2">
                         <button onclick="setCategoryFilter('all')" class="cat-filter px-4 py-2.5 rounded-xl text-sm font-semibold bg-medical-600 text-white transition-all" data-category="all">ทั้งหมด</button>
-                        <button onclick="setCategoryFilter('mobility')" class="cat-filter px-4 py-2.5 rounded-xl text-sm font-semibold bg-gray-100 text-gray-600 hover:bg-gray-200 transition-all" data-category="mobility">อุปกรณ์เคลื่อน 
-                        </button>
+                        <button onclick="setCategoryFilter('mobility')" class="cat-filter px-4 py-2.5 rounded-xl text-sm font-semibold bg-gray-100 text-gray-600 hover:bg-gray-200 transition-all" data-category="mobility">อุปกรณ์เคลื่อนที่</button>
                         <button onclick="setCategoryFilter('respiratory')" class="cat-filter px-4 py-2.5 rounded-xl text-sm font-semibold bg-gray-100 text-gray-600 hover:bg-gray-200 transition-all" data-category="respiratory">ระบบทางเดินหายใจ</button>
                         <button onclick="setCategoryFilter('bedding')" class="cat-filter px-4 py-2.5 rounded-xl text-sm font-semibold bg-gray-100 text-gray-600 hover:bg-gray-200 transition-all" data-category="bedding">เตียงและที่นอน</button>
                     </div>
@@ -314,7 +247,7 @@
 
                 <!-- Equipment Grid -->
                 <div id="equipment-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <!-- Dynamic Equipment Cards populated by JS -->
+                    <!-- Dynamic Equipment Cards -->
                 </div>
             </div>
         </section>
@@ -334,7 +267,6 @@
                 </div>
 
                 <div id="tracking-results" class="space-y-6">
-                    <!-- Dynamic tracking list or empty state -->
                     <div class="bg-white p-12 rounded-3xl border border-gray-100 text-center">
                         <div class="w-16 h-16 bg-medical-50 text-medical-600 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl">
                             <i class="fa-solid fa-clipboard-question"></i>
@@ -376,7 +308,6 @@
                         <p class="text-sm text-gray-500 leading-relaxed">วันจันทร์ - วันศุกร์ (เปิดทำการ)<br>วันเสาร์ - อาทิตย์ และวันหยุดนักขัตฤกษ์ (ปิดทำการ)</p>
                     </div>
                 </div>
-                <!-- Map / Embed container -->
                 <div class="bg-white p-4 rounded-3xl border border-gray-100 shadow-sm overflow-hidden">
                     <div class="w-full h-96 rounded-2xl bg-gray-100 flex items-center justify-center text-gray-400 relative overflow-hidden">
                         <iframe class="w-full h-full border-0 rounded-2xl" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3921.23456789!2d99.85!3d12.56!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTLCsDMzJzM2LjAiTiA5OcKwNTEnMDAuMCJF!5e0!3m2!1sth!2sth!4v1600000000000!5m2!1sth!2sth" allowfullscreen="" loading="lazy"></iframe>
@@ -429,7 +360,7 @@
 
     <!-- MODAL: LOGIN -->
     <div id="loginModal" class="fixed inset-0 z-50 hidden bg-black/50 backdrop-blur-sm flex items-center justify-center p-4">
-        <div class="bg-white w-full max-w-md rounded-3xl shadow-2xl p-6 sm:p-8 relative animate-in fade-in zoom-in duration-200">
+        <div class="bg-white w-full max-w-md rounded-3xl shadow-2xl p-6 sm:p-8 relative">
             <button onclick="closeModal('loginModal')" class="absolute top-6 right-6 text-gray-400 hover:text-gray-600 p-2 rounded-full hover:bg-gray-100">
                 <i class="fa-solid fa-xmark text-xl"></i>
             </button>
@@ -440,814 +371,134 @@
                 <h3 class="text-xl font-bold text-gray-900">เข้าสู่ระบบ MediBorrow</h3>
                 <p class="text-xs text-gray-500 mt-1">เลือกประเภทผู้ใช้งานเพื่อเข้าสู่ระบบ</p>
             </div>
-
-            <!-- Login Tabs -->
-            <div class="flex rounded-xl bg-gray-100 p-1 mb-6">
-                <button onclick="switchLoginTab('patient')" id="login-tab-patient" class="flex-1 py-2 text-xs font-bold rounded-lg bg-white text-medical-700 shadow-sm transition-all">ประชาชน / ผู้ป่วย</button>
-                <button onclick="switchLoginTab('staff')" id="login-tab-staff" class="flex-1 py-2 text-xs font-medium rounded-lg text-gray-500 hover:text-gray-900 transition-all">เจ้าหน้าที่ / แอดมิน</button>
-            </div>
-
-            <form id="login-form" onsubmit="handleLogin(event)" class="space-y-4">
-                <input type="hidden" id="login-role" value="patient">
-                <div>
-                    <label class="block text-xs font-bold text-gray-700 mb-1" id="login-id-label">หมายเลขบัตรประชาชน (13 หลัก)</label>
-                    <input type="text" id="login-username" required placeholder="กรอกเลขบัตรประชาชน..." class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-medical-500">
-                </div>
-                <div>
-                    <label class="block text-xs font-bold text-gray-700 mb-1">รหัสผ่าน</label>
-                    <input type="password" id="login-password" required placeholder="••••••••" class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-medical-500">
-                </div>
-                <button type="submit" class="w-full py-3.5 bg-medical-600 hover:bg-medical-700 text-white font-bold rounded-xl shadow-lg shadow-medical-500/20 transition-all mt-2">
-                    เข้าสู่ระบบ
-                </button>
-            </form>
-            <div class="mt-6 text-center text-xs text-gray-500">
-                ยังไม่มีบัญชีผู้ใช้งาน? <button onclick="closeModal('loginModal'); openModal('registerModal');" class="text-medical-600 font-bold hover:underline">สมัครสมาชิก</button>
-            </div>
         </div>
     </div>
 
-    <!-- MODAL: REGISTER -->
-    <div id="registerModal" class="fixed inset-0 z-50 hidden bg-black/50 backdrop-blur-sm flex items-center justify-center p-4">
-        <div class="bg-white w-full max-w-lg rounded-3xl shadow-2xl p-6 sm:p-8 relative max-h-[90vh] overflow-y-auto">
-            <button onclick="closeModal('registerModal')" class="absolute top-6 right-6 text-gray-400 hover:text-gray-600 p-2 rounded-full hover:bg-gray-100">
-                <i class="fa-solid fa-xmark text-xl"></i>
-            </button>
-            <div class="text-center mb-6">
-                <div class="w-12 h-12 bg-medical-50 text-medical-600 rounded-2xl flex items-center justify-center mx-auto mb-3 text-xl">
-                    <i class="fa-solid fa-user-plus"></i>
-                </div>
-                <h3 class="text-xl font-bold text-gray-900">สมัครสมาชิกใหม่</h3>
-                <p class="text-xs text-gray-500 mt-1">สำหรับประชาชนในตำบลทับใต้ อำเภอหัวหิน</p>
-            </div>
-
-            <form id="register-form" onsubmit="handleRegister(event)" class="space-y-4">
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div>
-                        <label class="block text-xs font-bold text-gray-700 mb-1">ชื่อจริง</label>
-                        <input type="text" id="reg-firstname" required placeholder="ชื่อ" class="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-medical-500">
-                    </div>
-                    <div>
-                        <label class="block text-xs font-bold text-gray-700 mb-1">นามสกุล</label>
-                        <input type="text" id="reg-lastname" required placeholder="นามสกุล" class="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-medical-500">
-                    </div>
-                </div>
-                <div>
-                    <label class="block text-xs font-bold text-gray-700 mb-1">หมายเลขบัตรประชาชน (13 หลัก)</label>
-                    <input type="text" id="reg-idcard" required maxlength="13" placeholder="1100xxxxxxxx" class="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-medical-500">
-                </div>
-                <div>
-                    <label class="block text-xs font-bold text-gray-700 mb-1">เบอร์โทรศัพท์มือถือ</label>
-<input type="tel" id="reg-phone" required minlength="10" maxlength="10" placeholder="0812345678" class="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-medical-500">
-                </div>
-                <div>
-                   <label class="block text-xs font-bold text-gray-700 mb-1">ที่อยู่ (หมู่บ้าน/ซอย ในตำบล อำเภอหัวหิน)</label>
-<textarea id="reg-address" required rows="2" placeholder="บ้านเลขที่, หมู่บ้าน, ซอย, ต.หัวหิน อ.หัวหิน" pattern=".*(หัวหิน|ทับใต้).*|.*(หิน).*|.*(ทับใต้).*" oninvalid="this.setCustomValidity('กรุณาระบุที่อยู่ในอำเภอหัวหินเท่านั้น')" oninput="this.setCustomValidity('')" class="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-medical-500"></textarea>
-                </div>
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div>
-                        <label class="block text-xs font-bold text-gray-700 mb-1">รหัสผ่าน</label>
-                        <input type="password" id="reg-password" required minlength="6" placeholder="••••••••" class="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-medical-500">
-                    </div>
-                    <div>
-                        <label class="block text-xs font-bold text-gray-700 mb-1">ยืนยันรหัสผ่าน</label>
-                        <input type="password" id="reg-confirm-password" required placeholder="••••••••" class="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-medical-500">
-                    </div>
-                </div>
-                <button type="submit" class="w-full py-3.5 bg-medical-600 hover:bg-medical-700 text-white font-bold rounded-xl shadow-lg shadow-medical-500/20 transition-all mt-4">
-                    ยืนยันการสมัครสมาชิก
-                </button>
-            </form>
-        </div>
-    </div>
-
-    <!-- MODAL: BOOKING / BORROW -->
-    <div id="bookingModal" class="fixed inset-0 z-50 hidden bg-black/50 backdrop-blur-sm flex items-center justify-center p-4">
-        <div class="bg-white w-full max-w-lg rounded-3xl shadow-2xl p-6 sm:p-8 relative max-h-[90vh] overflow-y-auto">
-            <button onclick="closeModal('bookingModal')" class="absolute top-6 right-6 text-gray-400 hover:text-gray-600 p-2 rounded-full hover:bg-gray-100">
-                <i class="fa-solid fa-xmark text-xl"></i>
-            </button>
-            <div class="flex items-center space-x-4 mb-6">
-                <div id="book-item-icon" class="w-14 h-14 bg-medical-50 text-medical-600 rounded-2xl flex items-center justify-center text-2xl font-bold flex-shrink-0">
-                    <i class="fa-solid fa-bed-pulse"></i>
-                </div>
-                <div>
-                    <h3 class="text-lg font-bold text-gray-900" id="book-item-name">ชื่ออุปกรณ์</h3>
-                    <p class="text-xs text-medical-700 font-semibold" id="book-item-status">สถานะ: พร้อมให้ยืม</p>
-                </div>
-            </div>
-
-            <form id="booking-form" onsubmit="handleBookingSubmit(event)" class="space-y-4">
-                <input type="hidden" id="book-item-id">
-                <div>
-                    <label class="block text-xs font-bold text-gray-700 mb-1">ชื่อ-นามสกุล ผู้ขอยืมอุปกรณ์</label>
-                    <input type="text" id="book-fullname" required class="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-medical-500">
-                </div>
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div>
-                        <label class="block text-xs font-bold text-gray-700 mb-1">หมายเลขบัตรประชาชน</label>
-                        <input type="text" id="book-idcard" required maxlength="13" class="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-medical-500">
-                    </div>
-                    <div>
-                        <label class="block text-xs font-bold text-gray-700 mb-1">เบอร์โทรศัพท์ติดต่อ</label>
-                        <input type="tel" id="book-phone" required class="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-medical-500">
-                    </div>
-                </div>
-                <div>
-                    <label class="block text-xs font-bold text-gray-700 mb-1">ชื่อผู้ป่วย / ผู้ใช้งานจริง</label>
-                    <input type="text" id="book-patient-name" required placeholder="ระบุชื่อผู้ป่วย (ถ้าไม่ใช่คนเดียวกับผู้ยืม)" class="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-medical-500">
-                </div>
-                <div>
-                    <label class="block text-xs font-bold text-gray-700 mb-1">เหตุผลความจำเป็น / อาการเบื้องต้น</label>
-                    <textarea id="book-reason" required rows="2" placeholder="เช่น ผู้ป่วยติดเตียง ขาหักต้องทำกายภาพบำบัด..." class="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-medical-500"></textarea>
-                </div>
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div>
-                        <label class="block text-xs font-bold text-gray-700 mb-1">วันที่ต้องการรับอุปกรณ์</label>
-                        <input type="date" id="book-start-date" required class="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-medical-500">
-                    </div>
-                    <div>
-                        <label class="block text-xs font-bold text-gray-700 mb-1">ระยะเวลาที่ต้องการยืม</label>
-                        <select id="book-duration" class="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-medical-500">
-                            <option value="15">15 วัน</option>
-                            <option value="30" selected>30 วัน (1 เดือน)</option>
-                            <option value="60">60 วัน (2 เดือน)</option>
-                            <option value="90">90 วัน (3 เดือน)</option>
-                        </select>
-                    </div>
-                </div>
-                <button type="submit" class="w-full py-3.5 bg-medical-600 hover:bg-medical-700 text-white font-bold rounded-xl shadow-lg shadow-medical-500/20 transition-all mt-4">
-                    ยืนยันการจองยืมอุปกรณ์
-                </button>
-            </form>
-        </div>
-    </div>
-
-    <!-- MODAL: STAFF INVENTORY & REQUEST MANAGEMENT -->
+    <!-- STAFF LOGIN MODAL -->
     <div id="staffModal" class="fixed inset-0 z-50 hidden bg-black/50 backdrop-blur-sm flex items-center justify-center p-4">
-        <div class="bg-white w-full max-w-4xl rounded-3xl shadow-2xl p-6 sm:p-8 relative max-h-[90vh] overflow-y-auto">
-            <button onclick="closeModal('staffModal')" class="absolute top-6 right-6 text-gray-400 hover:text-gray-600 p-2 rounded-full hover:bg-gray-100">
+        <div class="bg-white w-full max-w-lg rounded-3xl shadow-2xl p-6 sm:p-8 relative max-h-[90vh] overflow-y-auto">
+            <button onclick="closeModal('staffModal')" class="absolute top-6 right-6 text-gray-400 hover:text-gray-600">
                 <i class="fa-solid fa-xmark text-xl"></i>
             </button>
-            <div class="flex items-center space-x-3 mb-6">
-                <div class="w-12 h-12 bg-purple-100 text-purple-600 rounded-2xl flex items-center justify-center text-xl font-bold">
-                    <i class="fa-solid fa-user-shield"></i>
+            <div class="mb-6">
+                <div class="flex items-center space-x-3 mb-1">
+                    <div class="w-10 h-10 rounded-xl bg-medical-50 text-medical-600 flex items-center justify-center text-lg">
+                        <i class="fa-solid fa-shield-halved"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-bold text-gray-900">เข้าสู่ระบบสำหรับเจ้าหน้าที่ รพ.สต. ทับใต้</h3>
+                        <p class="text-xs text-gray-500">ระบบบริหารจัดการคลังครุภัณฑ์และการยืม-คืนอุปกรณ์ทางการแพทย์</p>
+                    </div>
                 </div>
+            </div>
+
+            <form onsubmit="handleStaffLogin(event)" class="space-y-4">
                 <div>
-                    <h3 class="text-xl font-bold text-gray-900">แผงควบคุมเจ้าหน้าที่ รพ.สต. ทับใต้</h3>
-                    <p class="text-xs text-gray-500">จัดการคำขอยืมอุปกรณ์และสถานะสต็อกคลังอุปกรณ์</p>
+                    <label class="block text-xs font-bold text-gray-700 mb-1">ชื่อผู้ใช้ (Username) *</label>
+                    <div class="relative">
+                        <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center text-gray-400">
+                            <i class="fa-solid fa-user"></i>
+                        </span>
+                        <input type="text" id="staff-username" required value="0840905124" class="w-full pl-10 pr-4 py-2.5 bg-gray-50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-medical-500">
+                    </div>
                 </div>
-            </div>
+                
+                <div>
+                    <label class="block text-xs font-bold text-gray-700 mb-1">รหัสผ่าน (Password) *</label>
+                    <div class="relative">
+                        <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center text-gray-400">
+                            <i class="fa-solid fa-lock"></i>
+                        </span>
+                        <input type="password" id="staff-password" required value="******" class="w-full pl-10 pr-10 py-2.5 bg-gray-50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-medical-500">
+                        <button type="button" onclick="toggleStaffPassword()" class="absolute inset-y-0 right-0 pr-3.5 flex items-center text-gray-400 hover:text-gray-600">
+                            <i id="staff-eye-icon" class="fa-solid fa-eye-slash"></i>
+                        </button>
+                    </div>
+                </div>
 
-            <!-- Staff Tabs -->
-            <div class="flex space-x-2 border-b border-gray-100 pb-4 mb-6">
-                <button onclick="switchStaffTab('requests')" id="staff-tab-requests" class="px-4 py-2 rounded-xl text-sm font-bold bg-purple-600 text-white shadow-sm transition-all">จัดการคำขอยืม (<span id="req-count-badge">0</span>)</button>
-                <button onclick="switchStaffTab('inventory')" id="staff-tab-inventory" class="px-4 py-2 rounded-xl text-sm font-semibold text-gray-600 bg-gray-100 hover:bg-gray-200 transition-all">จัดการคลังอุปกรณ์</button>
-            </div>
+                <button type="submit" class="w-full py-3.5 bg-medical-600 hover:bg-medical-700 text-white font-bold rounded-xl transition-colors shadow-lg shadow-medical-600/20 flex items-center justify-center space-x-2">
+                    <span>เข้าสู่ระบบเจ้าหน้าที่</span>
+                    <i class="fa-solid fa-arrow-right"></i>
+                </button>
+            </form>
 
-            <!-- TAB 1: REQUESTS MANAGEMENT -->
-            <div id="staff-content-requests" class="staff-tab-pane space-y-4">
-                <div id="staff-requests-list" class="space-y-3">
-                    <!-- Populated by JS -->
-                </div>
-            </div>
-
-            <!-- TAB 2: INVENTORY MANAGEMENT -->
-            <div id="staff-content-inventory" class="staff-tab-pane hidden space-y-4">
-                <div class="flex justify-between items-center mb-4">
-                    <h4 class="font-bold text-gray-800">รายการอุปกรณ์ทั้งหมดในคลัง</h4>
-                    <button onclick="openAddItemModal()" class="px-4 py-2 bg-medical-600 hover:bg-medical-700 text-white text-xs font-semibold rounded-xl shadow transition-all flex items-center space-x-1.5">
-                        <i class="fa-solid fa-plus"></i><span>เพิ่มอุปกรณ์ใหม่</span>
-                    </button>
-                </div>
-                <div class="overflow-x-auto">
-                    <table class="w-full text-left border-collapse text-sm">
-                        <thead>
-                            <tr class="bg-gray-50 border-b border-gray-100 text-gray-600">
-                                <th class="p-3 font-semibold">รหัส / ชื่ออุปกรณ์</th>
-                                <th class="p-3 font-semibold">หมวดหมู่</th>
-                                <th class="p-3 font-semibold">ทั้งหมด</th>
-                                <th class="p-3 font-semibold">ว่าง</th>
-                                <th class="p-3 font-semibold">สถานะ</th>
-                                <th class="p-3 font-semibold text-right">จัดการ</th>
-                            </tr>
-                        </thead>
-                        <tbody id="staff-inventory-table" class="divide-y divide-gray-100">
-                            <!-- Populated by JS -->
-                        </tbody>
-                    </table>
-                </div>
+            <div class="mt-6 pt-4 border-t border-gray-100 text-center text-xs text-gray-400">
+                โรงพยาบาลส่งเสริมสุขภาพตำบลทับใต้ โทร. 032-510-123
             </div>
         </div>
     </div>
 
-    <!-- NOTIFICATION TOAST -->
-    <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-24 opacity-0 transition-all duration-300 bg-gray-900 text-white px-6 py-3.5 rounded-2xl shadow-xl flex items-center space-x-3">
-        <i id="toast-icon" class="fa-solid fa-circle-check text-green-400 text-lg"></i>
-        <span id="toast-message" class="text-sm font-medium">บันทึกข้อมูลสำเร็จ</span>
-    </div>
-
-    <!-- Application Logic Script -->
+    <!-- JavaScript Section -->
     <script>
-        // Initial Mock Database for Equipment
-        let equipmentList = [
-            { id: 'EQ-001', name: 'เตียงผู้ป่วย 3 ไทรกลไก พร้อมที่นอนลม', category: 'bedding', total: 15, available: 11, status: 'normal', image: 'fa-bed-pulse', desc: 'เตียงปรับระดับหัว-ท้ายเข่าได้ พร้อมที่นอนลมป้องกันแผลกดทับ' },
-            { id: 'EQ-002', name: 'รถเข็นวีลแชร์ (Wheelchair) อลูมิเนียมพับได้', category: 'mobility', total: 25, available: 18, status: 'normal', image: 'fa-wheelchair', desc: 'น้ำหนักเบา พับเก็บใส่ท้ายรถได้สะดวก เบาะนั่งถอดซักได้' },
-            { id: 'EQ-003', name: 'เครื่องผลิตออกซิเจน ขนาด 5 ลิตร', category: 'respiratory', total: 10, available: 6, status: 'normal', image: 'fa-lungs', desc: 'เหมาะสำหรับผู้ป่วยโรคปอด โรคหัวใจ หรือผู้ต้องการออกซิเจนเสริม' },
-            { id: 'EQ-004', name: 'ไม้เท้าค้ำยันรักแร้ (Crutches - คู่)', category: 'mobility', total: 30, available: 22, status: 'normal', image: 'fa-crutch', desc: 'ปรับระดับความสูงได้ตามสรีระผู้ใช้งาน วัสดุอลูมิเนียมทนทาน' },
-            { id: 'EQ-005', name: 'เครื่องพ่นยาขยายหลอดลม (Nebulizer)', category: 'respiratory', total: 12, available: 8, status: 'normal', image: 'fa-prescription-bottle-medical', desc: 'สำหรับผู้ป่วยหอบหืดหรือโรคระบบทางเดินหายใจ พกพาง่าย' },
-            { id: 'EQ-006', name: 'รถเข็นหัดเดิน 4 ล้อ (Rollator)', category: 'mobility', total: 10, available: 7, status: 'normal', image: 'fa-person-walking-with-cane', desc: 'มีที่นั่งพักและตะกร้าใส่ของ เหมาะสำหรับผู้สูงอายุเดินได้ด้วยตนเอง' },
-            { id: 'EQ-007', name: 'ที่นอนลมป้องกันแผลกดทับ แบบลอน', category: 'bedding', total: 20, available: 14, status: 'normal', image: 'fa-bed', desc: 'ทำงานต่อเนื่องอัตโนมัติ ช่วยกระจายแรงกดทับของร่างกาย' },
-            { id: 'EQ-008', name: 'ถังออกซิเจนพกพาขนาด 0.5 คิว พร้อมชุดปรับแรงดัน', category: 'respiratory', total: 8, available: 5, status: 'normal', image: 'fa-fire-extinguisher', desc: 'น้ำหนักเบา เหมาะสำหรับการเคลื่อนย้ายผู้ป่วยฉุกเฉิน' },
-            { id: 'EQ-009', name: 'ไม้เท้า 3 ขา / 4 ขา (Quad Cane)', category: 'mobility', total: 12, available: 7, status: 'normal', image: 'fa-walking', desc: 'ฐานกว้างมั่นคงเป็นพิเศษ ช่วยพยุงตัวผู้สูงอายุเวลาเดิน' }
-        ];
+        function openModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) modal.classList.remove('hidden');
+        }
 
-        // Initial Mock Requests / Borrow Records
-        let borrowRequests = [
-            {
-                id: 'BR-2026-001',
-                itemId: 'EQ-001',
-                itemName: 'เตียงผู้ป่วย 3 ไทรกลไก พร้อมที่นอนลม',
-                borrowerName: 'สมชาย ใจดี',
-                idCard: '1100123456789',
-                phone: '0812345678',
-                patientName: 'คุณยาย สมใจ ใจดี',
-                reason: 'ผู้ป่วยติดเตียงจากโรคหลอดเลือดสมอง',
-                startDate: '2026-10-01',
-                dueDate: '2026-10-31',
-                status: 'approved' // pending, approved, borrowed, returned, rejected
-            },
-            {
-                id: 'BR-2026-002',
-                itemId: 'EQ-003',
-                itemName: 'เครื่องผลิตออกซิเจน ขนาด 5 ลิตร',
-                borrowerName: 'วิชัย รักษาดี',
-                idCard: '1100987654321',
-                phone: '0898765432',
-                patientName: 'วิชัย รักษาดี',
-                reason: 'โรคปอดอุดกั้นเรื้อรัง',
-                startDate: '2026-10-02',
-                dueDate: '2026-11-02',
-                status: 'pending'
-            }
-        ];
+        function closeModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) modal.classList.add('hidden');
+        }
 
-        // Current Logged-in User State
-        let currentUser = null; // { name, role: 'patient'|'staff', idCard }
-
-        // View Switching Logic
         function switchView(viewName) {
             document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
-            document.getElementById(`view-${viewName}`).classList.add('active');
-
-            document.querySelectorAll('.nav-btn').forEach(btn => {
-                btn.classList.remove('text-medical-700', 'bg-medical-50');
-                btn.classList.add('text-gray-600', 'hover:text-medical-600', 'hover:bg-gray-50');
-            });
-            const activeBtn = document.getElementById(`nav-${viewName}`);
-            if (activeBtn) {
-                activeBtn.classList.remove('text-gray-600', 'hover:text-medical-600', 'hover:bg-gray-50');
-                activeBtn.classList.add('text-medical-700', 'bg-medical-50');
-            }
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            const target = document.getElementById('view-' + viewName);
+            if (target) target.classList.add('active');
         }
 
         function toggleMobileMenu() {
             const menu = document.getElementById('mobile-menu');
-            menu.classList.toggle('hidden');
+            if (menu) menu.classList.toggle('hidden');
         }
 
-        // Modal Handlers
-        function openModal(modalId) {
-            document.getElementById(modalId).classList.remove('hidden');
-        }
-
-        function closeModal(modalId) {
-            document.getElementById(modalId).classList.add('hidden');
-        }
-
-        // Login Tabs Switcher
-        function switchLoginTab(role) {
-            const btnPatient = document.getElementById('login-tab-patient');
-            const btnStaff = document.getElementById('login-tab-staff');
-            const roleInput = document.getElementById('login-role');
-            const idLabel = document.getElementById('login-id-label');
-            const usernameInput = document.getElementById('login-username');
-
-            if (role === 'patient') {
-                btnPatient.className = "flex-1 py-2 text-xs font-bold rounded-lg bg-white text-medical-700 shadow-sm transition-all";
-                btnStaff.className = "flex-1 py-2 text-xs font-medium rounded-lg text-gray-500 hover:text-gray-900 transition-all";
-                roleInput.value = 'patient';
-                idLabel.textContent = "หมายเลขบัตรประชาชน (13 หลัก)";
-                usernameInput.placeholder = "กรอกเลขบัตรประชาชน...";
-            } else {
-                btnStaff.className = "flex-1 py-2 text-xs font-bold rounded-lg bg-white text-purple-700 shadow-sm transition-all";
-                btnPatient.className = "flex-1 py-2 text-xs font-medium rounded-lg text-gray-500 hover:text-gray-900 transition-all";
-                roleInput.value = 'staff';
-                idLabel.textContent = "รหัสเจ้าหน้าที่ / ชื่อผู้ใช้งาน";
-                usernameInput.placeholder = "กรอกรหัสเจ้าหน้าที่ (เช่น staff01)...";
-            }
-        }
-
-        // Render Catalog Grid
-        let currentCategory = 'all';
-        let searchQuery = '';
-
-        function renderCatalog() {
-            const grid = document.getElementById('equipment-grid');
-            grid.innerHTML = '';
-
-            const filtered = equipmentList.filter(item => {
-                const matchCat = currentCategory === 'all' || item.category === currentCategory;
-                const matchSearch = item.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
-                                    item.desc.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                                    item.id.toLowerCase().includes(searchQuery.toLowerCase());
-                return matchCat && matchSearch;
-            });
-
-            if (filtered.length === 0) {
-                grid.innerHTML = `
-                    <div class="col-span-full py-12 text-center bg-white rounded-3xl border border-gray-100">
-                        <i class="fa-solid fa-box-open text-4xl text-gray-300 mb-3"></i>
-                        <p class="text-gray-600 font-semibold">ไม่พบรายการอุปกรณ์ที่คุณค้นหา</p>
-                        <p class="text-xs text-gray-400 mt-1">ลองเปลี่ยนคำค้นหาหรือหมวดหมู่</p>
-                    </div>
-                `;
-                return;
-            }
-
-            filtered.forEach(item => {
-                const isAvailable = item.available > 0;
-                const card = document.createElement('div');
-                card.className = "bg-white rounded-3xl border border-gray-100 shadow-sm hover:shadow-md transition-all p-6 flex flex-col justify-between";
-                card.innerHTML = `
-                    <div>
-                        <div class="flex items-center justify-between mb-4">
-                            <div class="w-12 h-12 bg-medical-50 text-medical-600 rounded-2xl flex items-center justify-center text-xl font-bold">
-                                <i class="fa-solid ${item.image}"></i>
-                            </div>
-                            <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold ${isAvailable ? 'bg-green-50 text-green-700 border border-green-200' : 'bg-red-50 text-red-700 border border-red-200'}">
-                                <span class="w-2 h-2 rounded-full ${isAvailable ? 'bg-green-500' : 'bg-red-500'} mr-1.5"></span>
-                                ${isAvailable ? `ว่าง ${item.available} ชิ้น` : 'หมดชั่วคราว'}
-                            </span>
-                        </div>
-                        <span class="text-xs text-gray-400 font-mono">${item.id}</span>
-                        <h4 class="text-lg font-bold text-gray-900 mt-1 mb-2">${item.name}</h4>
-                        <p class="text-xs text-gray-500 line-clamp-2 leading-relaxed mb-4">${item.desc}</p>
-                    </div>
-                    <div class="pt-4 border-t border-gray-100 flex items-center justify-between">
-                        <div>
-                            <span class="text-xs text-gray-400">ทั้งหมดในคลัง:</span>
-                            <span class="text-sm font-bold text-gray-700 ml-1">${item.total} ชิ้น</span>
-                        </div>
-                        <button onclick="openBookingModal('${item.id}')" ${!isAvailable ? 'disabled' : ''} class="px-4 py-2 bg-medical-600 hover:bg-medical-700 disabled:bg-gray-200 disabled:text-gray-400 text-white font-semibold text-xs rounded-xl shadow transition-all flex items-center space-x-1.5">
-                            <i class="fa-solid fa-hand-holding-medical"></i>
-                            <span>${isAvailable ? 'ยืมอุปกรณ์นี้' : 'ของหมด'}</span>
-                        </button>
-                    </div>
-                `;
-                grid.appendChild(card);
-            });
-
-            // Update stats
-            document.getElementById('stat-total').textContent = equipmentList.reduce((acc, curr) => acc + curr.total, 0);
-            document.getElementById('stat-available').textContent = equipmentList.reduce((acc, curr) => acc + curr.available, 0);
-        }
-
-        function setCategoryFilter(cat) {
-            currentCategory = cat;
-            document.querySelectorAll('.cat-filter').forEach(btn => {
-                if (btn.dataset.category === cat) {
-                    btn.className = "cat-filter px-4 py-2.5 rounded-xl text-sm font-semibold bg-medical-600 text-white transition-all";
-                } else {
-                    btn.className = "cat-filter px-4 py-2.5 rounded-xl text-sm font-semibold bg-gray-100 text-gray-600 hover:bg-gray-200 transition-all";
-                }
-            });
-            renderCatalog();
-        }
-
-        function filterCatalog() {
-            searchQuery = document.getElementById('search-input').value;
-            renderCatalog();
-        }
-
-        // Booking Modal Trigger
-        function openBookingModal(itemId) {
-            const item = equipmentList.find(i => i.id === itemId);
-            if (!item) return;
-
-            document.getElementById('book-item-id').value = item.id;
-            document.getElementById('book-item-name').textContent = item.name;
-            document.getElementById('book-item-status').textContent = `พร้อมให้บริการ (ว่าง ${item.available} ชิ้น)`;
-            document.getElementById('book-item-icon').innerHTML = `<i class="fa-solid ${item.image}"></i>`;
-
-            // Pre-fill if logged in as patient
-            if (currentUser && currentUser.role === 'patient') {
-                document.getElementById('book-fullname').value = currentUser.name;
-                document.getElementById('book-idcard').value = currentUser.idCard;
-                document.getElementById('book-phone').value = currentUser.phone || '';
-            } else {
-                document.getElementById('booking-form').reset();
-                document.getElementById('book-item-id').value = item.id;
-            }
-
-            // Set default date to today
-            const today = new Date().toISOString().split('T')[0];
-            document.getElementById('book-start-date').value = today;
-
-            openModal('bookingModal');
-        }
-
-        // Handle Booking Submission
-        function handleBookingSubmit(event) {
-            event.preventDefault();
-            const itemId = document.getElementById('book-item-id').value;
-            const item = equipmentList.find(i => i.id === itemId);
-            if (!item) return;
-
-            const fullname = document.getElementById('book-fullname').value;
-            const idcard = document.getElementById('book-idcard').value;
-            const phone = document.getElementById('book-phone').value;
-            const patientName = document.getElementById('book-patient-name').value;
-            const reason = document.getElementById('book-reason').value;
-            const startDate = document.getElementById('book-start-date').value;
-            const duration = parseInt(document.getElementById('book-duration').value);
-
-            // Calculate due date
-            const start = new Date(startDate);
-            start.setDate(start.getDate() + duration);
-            const dueDate = start.toISOString().split('T')[0];
-
-            const newReqId = `BR-2026-${String(borrowRequests.length + 1).padStart(3, '0')}`;
-            const newRequest = {
-                id: newReqId,
-                itemId: item.id,
-                itemName: item.name,
-                borrowerName: fullname,
-                idCard: idcard,
-                phone: phone,
-                patientName: patientName,
-                reason: reason,
-                startDate: startDate,
-                dueDate: dueDate,
-                status: 'pending'
-            };
-
-            borrowRequests.unshift(newRequest);
-            closeModal('bookingModal');
-            showToast(`ส่งคำขอยืมอุปกรณ์สำเร็จ! รหัสคำขอ: ${newReqId}`);
-            
-            // Switch to tracking view to see request
-            switchView('tracking');
-            document.getElementById('tracking-input').value = idcard;
-            searchTracking();
-        }
-
-        // Authentication Handlers
-        function handleLogin(event) {
-            event.preventDefault();
-            const role = document.getElementById('login-role').value;
-            const username = document.getElementById('login-username').value;
-            const pass = document.getElementById('login-password').value;
-
-            if (role === 'staff') {
-                currentUser = { name: 'เจ้าหน้าที่ รพ.สต.', role: 'staff', idCard: username };
-                showToast('เข้าสู่ระบบเจ้าหน้าที่สำเร็จ');
-                document.getElementById('staff-action-btn').classList.remove('hidden');
-            } else {
-                if (username.length !== 13) {
-                    showToast('กรุณากรอกหมายเลขบัตรประชาชน 13 หลักให้ถูกต้อง', 'error');
-                    return;
-                }
-                currentUser = { name: 'คุณสมชาย ใจดี', role: 'patient', idCard: username, phone: '0812345678' };
-                showToast('เข้าสู่ระบบสำเร็จ');
-                document.getElementById('staff-action-btn').classList.add('hidden');
-            }
-
-            // Update Header UI
-            document.getElementById('auth-guest-section').classList.add('hidden');
-            document.getElementById('auth-user-section').classList.remove('hidden');
-            document.getElementById('user-display-name').textContent = currentUser.name;
-            document.getElementById('user-avatar').textContent = currentUser.name.charAt(0);
-
-            closeModal('loginModal');
-        }
-
-        function handleRegister(event) {
-            event.preventDefault();
-            const fname = document.getElementById('reg-firstname').value;
-            const lname = document.getElementById('reg-lastname').value;
-            const idcard = document.getElementById('reg-idcard').value;
-            const phone = document.getElementById('reg-phone').value;
-            const p1 = document.getElementById('reg-password').value;
-            const p2 = document.getElementById('reg-confirm-password').value;
-const address = document.getElementById('reg-address').value.trim();
-    if (!address.includes('หัวหิน') && !address.includes('ทับใต้')) {
-        showToast('ขออภัย ระบบเปิดให้เฉพาะประชาชนในอำเภอหัวหิน สมัครสมาชิกเท่านั้น', 'error');
-        return;
-    }
-            if (idcard.length !== 13) {
-                showToast('หมายเลขบัตรประชาชนต้องมี 13 หลัก', 'error');
-                return;
-            }
-            if (p1 !== p2) {
-                showToast('รหัสผ่านไม่ตรงกัน กรุณากรอกใหม่อีกครั้ง', 'error');
-                return;
-            }
-
-            currentUser = { name: `${fname} ${lname}`, role: 'patient', idCard: idcard, phone: phone };
-            closeModal('registerModal');
-            showToast('สมัครสมาชิกและเข้าสู่ระบบสำเร็จ');
-
-            document.getElementById('auth-guest-section').classList.add('hidden');
-            document.getElementById('auth-user-section').classList.remove('hidden');
-            document.getElementById('user-display-name').textContent = currentUser.name;
-            document.getElementById('user-avatar').textContent = fname.charAt(0);
+        function showToast(message, type = 'success') {
+            alert(message); // สามารถเปลี่ยนเป็น Toast UI ตามต้องการได้
         }
 
         function logout() {
-            currentUser = null;
             document.getElementById('auth-user-section').classList.add('hidden');
             document.getElementById('auth-guest-section').classList.remove('hidden');
-            document.getElementById('staff-action-btn').classList.add('hidden');
-            showToast('ออกจากระบบเรียบร้อยแล้ว');
             switchView('home');
         }
 
-        // Tracking Search
-        function searchTracking() {
-            const query = document.getElementById('tracking-input').value.trim();
-            const container = document.getElementById('tracking-results');
-            container.innerHTML = '';
-
-            if (!query) {
-                container.innerHTML = `
-                    <div class="bg-white p-12 rounded-3xl border border-gray-100 text-center">
-                        <i class="fa-solid fa-triangle-exclamation text-3xl text-amber-500 mb-3"></i>
-                        <p class="text-gray-800 font-semibold">กรุณากรอกเลขบัตรประชาชนหรือรหัสคำขอก่อนค้นหา</p>
-                    </div>
-                `;
-                return;
-            }
-
-            const matched = borrowRequests.filter(req => req.idCard === query || req.id.toLowerCase() === query.toLowerCase());
-
-            if (matched.length === 0) {
-                container.innerHTML = `
-                    <div class="bg-white p-12 rounded-3xl border border-gray-100 text-center">
-                        <i class="fa-solid fa-folder-open text-3xl text-gray-300 mb-3"></i>
-                        <p class="text-gray-800 font-semibold">ไม่พบประวัติการยืมที่ตรงกับข้อมูลดังกล่าว</p>
-                        <p class="text-xs text-gray-400 mt-1">กรุณาตรวจสอบหมายเลขบัตรประชาชนหรือรหัสคำขออีกครั้ง</p>
-                    </div>
-                `;
-                return;
-            }
-
-            matched.forEach(req => {
-                let badgeColor = 'bg-yellow-50 text-yellow-700 border-yellow-200';
-                let statusText = 'รอการตรวจสอบ';
-                let iconClass = 'fa-clock text-yellow-500';
-
-                if (req.status === 'approved') {
-                    badgeColor = 'bg-blue-50 text-blue-700 border-blue-200';
-                    statusText = 'อนุมัติแล้ว (รอรับอุปกรณ์)';
-                    iconClass = 'fa-circle-check text-blue-500';
-                } else if (req.status === 'borrowed') {
-                    badgeColor = 'bg-green-50 text-green-700 border-green-200';
-                    statusText = 'กำลังยืมใช้งานอยู่';
-                    iconClass = 'fa-hand-holding-medical text-green-500';
-                } else if (req.status === 'returned') {
-                    badgeColor = 'bg-gray-100 text-gray-700 border-gray-200';
-                    statusText = 'คืนอุปกรณ์เรียบร้อยแล้ว';
-                    iconClass = 'fa-circle-check text-gray-500';
-                } else if (req.status === 'rejected') {
-                    badgeColor = 'bg-red-50 text-red-700 border-red-200';
-                    statusText = 'ไม่อนุมัติคำขอ';
-                    iconClass = 'fa-circle-xmark text-red-500';
-                }
-
-                const card = document.createElement('div');
-                card.className = "bg-white p-6 sm:p-8 rounded-3xl border border-gray-100 shadow-sm space-y-4";
-                card.innerHTML = `
-                    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 border-b border-gray-100 pb-4">
-                        <div>
-                            <span class="text-xs font-mono font-bold text-medical-700">${req.id}</span>
-                            <h4 class="text-lg font-bold text-gray-900 mt-0.5">${req.itemName}</h4>
-                        </div>
-                        <span class="inline-flex items-center px-3.5 py-1.5 rounded-full text-xs font-semibold border ${badgeColor}">
-                            <i class="fa-solid ${iconClass} mr-1.5"></i> ${statusText}
-                        </span>
-                    </div>
-                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-sm">
-                        <div class="bg-gray-50 p-3.5 rounded-2xl">
-                            <span class="text-xs text-gray-400 block">ผู้ขอยืม / ผู้ป่วย</span>
-                            <span class="font-semibold text-gray-800">${req.borrowerName}</span>
-                            <span class="text-xs text-gray-500 block">ผู้ป่วย: ${req.patientName}</span>
-                        </div>
-                        <div class="bg-gray-50 p-3.5 rounded-2xl">
-                            <span class="text-xs text-gray-400 block">วันที่เริ่มยืม</span>
-                            <span class="font-semibold text-gray-800"><i class="fa-regular fa-calendar mr-1.5 text-medical-600"></i>${req.startDate}</span>
-                        </div>
-                        <div class="bg-gray-50 p-3.5 rounded-2xl">
-                            <span class="text-xs text-gray-400 block">กำหนดคืนอุปกรณ์</span>
-                            <span class="font-semibold text-gray-800"><i class="fa-regular fa-calendar-xmark mr-1.5 text-red-500"></i>${req.dueDate}</span>
-                        </div>
-                    </div>
-                    <div class="bg-medical-50/50 p-3.5 rounded-2xl text-xs text-gray-600 flex items-center justify-between">
-                        <span><i class="fa-solid fa-circle-info mr-1 text-medical-600"></i> เหตุผล: ${req.reason}</span>
-                        <span class="font-medium text-medical-700">รพ.สต. ทับใต้ อ.หัวหิน</span>
-                    </div>
-                `;
-                container.appendChild(card);
-            });
-        }
-
-        // Staff Modal & Dashboard Controls
-        function openStaffModal() {
-            renderStaffRequests();
-            renderStaffInventory();
-            openModal('staffModal');
-        }
-
-        function switchStaffTab(tab) {
-            const reqBtn = document.getElementById('staff-tab-requests');
-            const invBtn = document.getElementById('staff-tab-inventory');
-            const reqContent = document.getElementById('staff-content-requests');
-            const invContent = document.getElementById('staff-content-inventory');
-
-            if (tab === 'requests') {
-                reqBtn.className = "px-4 py-2 rounded-xl text-sm font-bold bg-purple-600 text-white shadow-sm transition-all";
-                invBtn.className = "px-4 py-2 rounded-xl text-sm font-semibold text-gray-600 bg-gray-100 hover:bg-gray-200 transition-all";
-                reqContent.classList.remove('hidden');
-                invContent.classList.add('hidden');
+        // ฟังก์ชันเปิด-ปิดการแสดงรหัสผ่านของเจ้าหน้าที่
+        function toggleStaffPassword() {
+            const passwordInput = document.getElementById('staff-password');
+            const eyeIcon = document.getElementById('staff-eye-icon');
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                eyeIcon.className = 'fa-solid fa-eye';
             } else {
-                invBtn.className = "px-4 py-2 rounded-xl text-sm font-bold bg-purple-600 text-white shadow-sm transition-all";
-                reqBtn.className = "px-4 py-2 rounded-xl text-sm font-semibold text-gray-600 bg-gray-100 hover:bg-gray-200 transition-all";
-                invContent.classList.remove('hidden');
-                reqContent.classList.add('hidden');
+                passwordInput.type = 'password';
+                eyeIcon.className = 'fa-solid fa-eye-slash';
             }
         }
 
-        function renderStaffRequests() {
-            const list = document.getElementById('staff-requests-list');
-            list.innerHTML = '';
-
-            const pendingCount = borrowRequests.filter(r => r.status === 'pending').length;
-            document.getElementById('req-count-badge').textContent = pendingCount;
-
-            if (borrowRequests.length === 0) {
-                list.innerHTML = `<p class="text-center text-gray-400 py-8">ไม่มีคำขอยืมอุปกรณ์ในระบบ</p>`;
-                return;
+        // ฟังก์ชันจัดการเข้าสู่ระบบของเจ้าหน้าที่
+        function handleStaffLogin(event) {
+            event.preventDefault();
+            
+            // 1. ปิด Modal ล็อกอินของเจ้าหน้าที่
+            closeModal('staffModal');
+            
+            // 2. แสดงแจ้งเตือนสำเร็จ
+            showToast('เข้าสู่ระบบเจ้าหน้าที่สำเร็จ', 'success');
+            
+            // 3. ซ่อนส่วนปุ่ม Guest และแสดงส่วนโปรไฟล์ผู้ใช้ (พร้อมป้าย จนท.)
+            const guestSection = document.getElementById('auth-guest-section');
+            const userSection = document.getElementById('auth-user-section');
+            if (guestSection) guestSection.classList.add('hidden');
+            if (userSection) userSection.classList.remove('hidden');
+            
+            // 4. อัปเดตชื่อแสดงผลบน Navbar ให้เป็นชื่อเจ้าหน้าที่ พร้อมป้าย "จนท."
+            const displayNameEl = document.getElementById('user-display-name');
+            if (displayNameEl) {
+                displayNameEl.innerHTML = 'นางสาวศิรภัสสร สา... <span class="text-[10px] bg-medical-100 text-medical-700 px-1.5 py-0.5 rounded font-bold ml-1">จนท.</span>';
             }
-
-            borrowRequests.forEach(req => {
-                const item = document.createElement('div');
-                item.className = "bg-gray-50 p-4 sm:p-6 rounded-2xl border border-gray-200 space-y-3";
-                
-                let actionsHTML = '';
-                if (req.status === 'pending') {
-                    actionsHTML = `
-                        <button onclick="updateRequestStatus('${req.id}', 'approved')" class="px-3.5 py-1.5 bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold rounded-xl shadow transition-all">อนุมัติคำขอ</button>
-                        <button onclick="updateRequestStatus('${req.id}', 'rejected')" class="px-3.5 py-1.5 bg-red-100 hover:bg-red-200 text-red-700 text-xs font-semibold rounded-xl transition-all">ไม่อนุมัติ</button>
-                    `;
-                } else if (req.status === 'approved') {
-                    actionsHTML = `
-                        <button onclick="updateRequestStatus('${req.id}', 'borrowed')" class="px-3.5 py-1.5 bg-green-600 hover:bg-green-700 text-white text-xs font-semibold rounded-xl shadow transition-all">บันทึกส่งมอบ (รับอุปกรณ์แล้ว)</button>
-                    `;
-                } else if (req.status === 'borrowed') {
-                    actionsHTML = `
-                        <button onclick="updateRequestStatus('${req.id}', 'returned')" class="px-3.5 py-1.5 bg-gray-800 hover:bg-gray-900 text-white text-xs font-semibold rounded-xl shadow transition-all">บันทึกรับคืนอุปกรณ์</button>
-                    `;
-                } else {
-                    actionsHTML = `<span class="text-xs font-semibold text-gray-400">เสร็จสิ้นภารกิจ</span>`;
-                }
-
-                item.innerHTML = `
-                    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
-                        <div>
-                            <span class="text-xs font-mono font-bold text-purple-700">${req.id}</span>
-                            <h5 class="font-bold text-gray-900">${req.itemName}</h5>
-                        </div>
-                        <span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-white border border-gray-200 text-gray-700">สถานะ: ${req.status}</span>
-                    </div>
-                    <div class="text-xs text-gray-600 grid grid-cols-1 sm:grid-cols-2 gap-2 bg-white p-3 rounded-xl border border-gray-100">
-                        <div><b>ผู้ขอยืม:</b> ${req.borrowerName} (${req.phone})</div>
-                        <div><b>ผู้ป่วย:</b> ${req.patientName}</div>
-                        <div class="sm:col-span-2"><b>เหตุผล:</b> ${req.reason} | <b>กำหนดคืน:</b> ${req.dueDate}</div>
-                    </div>
-                    <div class="flex items-center justify-end space-x-2 pt-2">
-                        ${actionsHTML}
-                    </div>
-                `;
-                list.appendChild(item);
-            });
+            
+            // 5. สลับมุมมองหน้าจอหลักไปที่หน้าคลังอุปกรณ์ / แดชบอร์ด
+            switchView('catalog');
         }
-
-        function updateRequestStatus(reqId, newStatus) {
-            const req = borrowRequests.find(r => r.id === reqId);
-            if (!req) return;
-
-            const eq = equipmentList.find(e => e.id === req.itemId);
-
-            if (newStatus === 'borrowed' && req.status === 'approved') {
-                if (eq && eq.available > 0) eq.available -= 1;
-            } else if (newStatus === 'returned' && req.status === 'borrowed') {
-                if (eq && eq.available < eq.total) eq.available += 1;
-            }
-
-            req.status = newStatus;
-            renderStaffRequests();
-            renderStaffInventory();
-            renderCatalog();
-            showToast(`อัปเดตสถานะคำขอ ${reqId} เป็น "${newStatus}" สำเร็จ`);
-        }
-
-        function renderStaffInventory() {
-            const tbody = document.getElementById('staff-inventory-table');
-            tbody.innerHTML = '';
-
-            equipmentList.forEach(item => {
-                const tr = document.createElement('tr');
-                tr.className = "hover:bg-gray-50/80 transition-colors";
-                tr.innerHTML = `
-                    <td class="p-3">
-                        <div class="font-bold text-gray-900">${item.name}</div>
-                        <div class="text-xs text-gray-400 font-mono">${item.id}</div>
-                    </td>
-                    <td class="p-3 text-gray-600">${item.category}</td>
-                    <td class="p-3 font-semibold text-gray-800">${item.total}</td>
-                    <td class="p-3 font-semibold text-medical-700">${item.available}</td>
-                    <td class="p-3">
-                        <span class="px-2.5 py-1 rounded-full text-xs font-semibold ${item.available > 0 ? 'bg-green-50 text-green-700' : 'bg-red-50 text-red-700'}">
-                            ${item.available > 0 ? 'ปกติ' : 'หมด'}
-                        </span>
-                    </td>
-                    <td class="p-3 text-right">
-                        <button onclick="adjustStock('${item.id}', 1)" class="p-1.5 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-lg text-xs mr-1" title="เพิ่มจำนวน"><i class="fa-solid fa-plus"></i></button>
-                        <button onclick="adjustStock('${item.id}', -1)" class="p-1.5 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-lg text-xs" title="ลดจำนวน"><i class="fa-solid fa-minus"></i></button>
-                    </td>
-                `;
-                tbody.appendChild(tr);
-            });
-        }
-
-        function adjustStock(itemId, amount) {
-            const item = equipmentList.find(e => e.id === itemId);
-            if (!item) return;
-
-            item.total += amount;
-            item.available += amount;
-            if (item.total < 0) item.total = 0;
-            if (item.available < 0) item.available = 0;
-            if (item.available > item.total) item.available = item.total;
-
-            renderStaffInventory();
-            renderCatalog();
-            showToast(`ปรับสต็อกอุปกรณ์ ${item.name} สำเร็จ`);
-        }
-
-        function openAddItemModal() {
-            const name = prompt("กรุณากรอกชื่ออุปกรณ์ใหม่:");
-            if (!name) return;
-            const cat = prompt("กรุณากรอกหมวดหมู่ (mobility, respiratory, bedding):", "mobility");
-            const total = parseInt(prompt("กรุณากรอกจำนวนทั้งหมดในคลัง:", "5") || "5");
-
-            const newId = `EQ-00${equipmentList.length + 1}`;
-            equipmentList.push({
-                id: newId,
-                name: name,
-                category: cat || 'mobility',
-                total: total,
-                available: total,
-                status: 'normal',
-                image: 'fa-kit-medical',
-                desc: 'อุปกรณ์ทางการแพทย์เพิ่มใหม่โดยเจ้าหน้าที่ รพ.สต. ทับใต้'
-            });
-
-            renderStaffInventory();
-            renderCatalog();
-            showToast(`เพิ่มอุปกรณ์ ${name} เข้าคลังสำเร็จ`);
-        }
-
-        // Toast Notification Helper
-        function showToast(message) {
-            const toast = document.getElementById('toast');
-            const msgEl = document.getElementById('toast-message');
-            msgEl.textContent = message;
-
-            toast.classList.remove('translate-y-24', 'opacity-0');
-            toast.classList.add('translate-y-0', 'opacity-100');
-
-            setTimeout(() => {
-                toast.classList.remove('translate-y-0', 'opacity-100');
-                toast.classList.add('translate-y-24', 'opacity-0');
-            }, 3500);
-        }
-
-        // Initialize application on window load
-        window.onload = function() {
-            renderCatalog();
-        };
     </script>
 </body>
 </html>

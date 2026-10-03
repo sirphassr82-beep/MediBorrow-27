@@ -878,7 +878,11 @@
             const phone = document.getElementById('reg-phone').value;
             const p1 = document.getElementById('reg-password').value;
             const p2 = document.getElementById('reg-confirm-password').value;
-
+const address = document.getElementById('reg-address').value.trim();
+    if (!address.includes('หัวหิน') && !address.includes('ทับใต้')) {
+        showToast('ขออภัย ระบบเปิดให้เฉพาะประชาชนในอำเภอหัวหิน สมัครสมาชิกเท่านั้น', 'error');
+        return;
+    }
             if (idcard.length !== 13) {
                 showToast('หมายเลขบัตรประชาชนต้องมี 13 หลัก', 'error');
                 return;

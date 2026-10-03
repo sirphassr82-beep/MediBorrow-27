@@ -70,63 +70,21 @@
                 </button>
             </nav>
 
-           <!-- STAFF LOGIN MODAL -->
-<div id="staffModal" class="fixed inset-0 z-50 hidden bg-black/50 backdrop-blur-sm flex items-center justify-center p-4">
-    <div class="bg-white w-full max-w-lg rounded-3xl shadow-2xl p-6 sm:p-8 relative max-h-[90vh] overflow-y-auto">
-        <!-- ปุ่มปิด (X) -->
-        <button onclick="closeModal('staffModal')" class="absolute top-6 right-6 text-gray-400 hover:text-gray-600">
-            <i class="fa-solid fa-xmark text-xl"></i>
-        </button>
+            <!-- User Auth Actions / Profile -->
+            <div class="flex items-center space-x-3">
+               <div id="auth-guest-section" class="flex items-center space-x-2">
+    <button onclick="openModal('loginModal')" class="px-4 py-2 text-sm font-semibold text-gray-700 hover:text-medical-600">
+        <i class="fa-solid fa-right-to-bracket mr-1.5"></i> เข้าสู่ระบบ
+    </button>
+    
+    <!-- ปุ่มเข้าสู่ระบบเจ้าหน้าที่ที่เพิ่มเข้ามา -->
+    <button onclick="openModal('staffModal')" class="px-4 py-2 text-sm font-semibold text-medical-600 hover:text-medical-700 border border-medical-300 rounded-xl transition-colors">
+        <i class="fa-solid fa-user-shield mr-1.5"></i> เจ้าหน้าที่
+    </button>
 
-        <!-- หัวข้อ -->
-        <div class="mb-6">
-            <div class="flex items-center space-x-3 mb-1">
-                <div class="w-10 h-10 rounded-xl bg-medical-50 text-medical-600 flex items-center justify-center text-lg">
-                    <i class="fa-solid fa-shield-halved"></i>
-                </div>
-                <div>
-                    <h3 class="text-lg font-bold text-gray-900">เข้าสู่ระบบสำหรับเจ้าหน้าที่ รพ.สต. ทับใต้</h3>
-                    <p class="text-xs text-gray-500">ระบบบริหารจัดการคลังครุภัณฑ์และการยืม-คืนอุปกรณ์ทางการแพทย์</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- ฟอร์มเข้าสู่ระบบเจ้าหน้าที่ -->
-        <form onsubmit="handleStaffLogin(event)" class="space-y-4">
-            <div>
-                <label class="block text-xs font-bold text-gray-700 mb-1">ชื่อผู้ใช้ (Username) *</label>
-                <div class="relative">
-                    <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center text-gray-400">
-                        <i class="fa-solid fa-user"></i>
-                    </span>
-                    <input type="text" id="staff-username" required value="0840905124" class="w-full pl-10 pr-4 py-2.5 bg-gray-50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-medical-500">
-                </div>
-            </div>
-            
-            <div>
-                <label class="block text-xs font-bold text-gray-700 mb-1">รหัสผ่าน (Password) *</label>
-                <div class="relative">
-                    <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center text-gray-400">
-                        <i class="fa-solid fa-lock"></i>
-                    </span>
-                    <input type="password" id="staff-password" required value="******" class="w-full pl-10 pr-10 py-2.5 bg-gray-50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-medical-500">
-                    <button type="button" onclick="toggleStaffPassword()" class="absolute inset-y-0 right-0 pr-3.5 flex items-center text-gray-400 hover:text-gray-600">
-                        <i id="staff-eye-icon" class="fa-solid fa-eye-slash"></i>
-                    </button>
-                </div>
-            </div>
-
-            <button type="submit" class="w-full py-3.5 bg-medical-600 hover:bg-medical-700 text-white font-bold rounded-xl transition-colors shadow-lg shadow-medical-600/20 flex items-center justify-center space-x-2">
-                <span>เข้าสู่ระบบเจ้าหน้าที่</span>
-                <i class="fa-solid fa-arrow-right"></i>
-            </button>
-        </form>
-
-        <!-- ส่วนท้าย Modal -->
-        <div class="mt-6 pt-4 border-t border-gray-100 text-center text-xs text-gray-400">
-            โรงพยาบาลส่งเสริมสุขภาพตำบลทับใต้ โทร. 032-510-123
-        </div>
-    </div>
+    <button onclick="openModal('registerModal')" class="px-4 py-2 text-sm font-semibold text-white bg-medical-600 rounded-xl hover:bg-medical-700">
+        <i class="fa-solid fa-user-plus mr-1.5"></i> สมัครสมาชิก
+    </button>
 </div>
                 <div id="auth-user-section" class="hidden flex items-center space-x-3">
                     <div class="flex items-center space-x-2 bg-gray-100 px-3 py-1.5 rounded-xl">

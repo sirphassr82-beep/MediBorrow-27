@@ -650,35 +650,7 @@
 
     <!-- Application Logic Script -->
     <script>
-        <!-- Application Logic Script -->
-<script>
-    // นำฟังก์ชันมาวางไว้ตรงนี้
-    function handleStaffLogin(event) {
-        event.preventDefault();
-        closeModal('staffModal');
         
-        const guestLinks = document.getElementById('nav-guest-links');
-        const guestAuth = document.getElementById('auth-guest-section');
-        const staffNav = document.getElementById('nav-staff-links');
-        const userSection = document.getElementById('auth-user-section');
-
-        if (guestLinks) guestLinks.classList.add('hidden');
-        if (guestAuth) guestAuth.classList.add('hidden');
-        
-        if (staffNav) {
-            staffNav.classList.remove('hidden');
-            staffNav.classList.add('flex');
-        }
-        if (userSection) {
-            userSection.classList.remove('hidden');
-            userSection.classList.add('flex');
-        }
-
-        switchView('catalog');
-    }
-
-    // Initial Mock Database for Equipment
-    let equipmentList = [ ... ]
         // Initial Mock Database for Equipment
         let equipmentList = [
             { id: 'EQ-001', name: 'เตียงผู้ป่วย 3 ไทรกลไก พร้อมที่นอนลม', category: 'bedding', total: 15, available: 11, status: 'normal', image: 'fa-bed-pulse', desc: 'เตียงปรับระดับหัว-ท้ายเข่าได้ พร้อมที่นอนลมป้องกันแผลกดทับ' },

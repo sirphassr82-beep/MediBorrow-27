@@ -980,6 +980,43 @@ function handleStaffLogin(event) {
     if (userNameEl) userNameEl.textContent = currentUser.name;
     if (userAvatarEl) userAvatarEl.textContent = currentUser.name.charAt(0);
 
+    // ซ่อนตัวโมดัลและบังคับปิดฉากหลัง (Backdrop) ที่ค้างอยู่ทั้งหมด
+    const loginModal = document.getElementById('loginModal') || document.getElementById('staff-login-modal');
+    if (loginModal) {
+        loginModal.classList.add('hidden');
+        loginModal.style.display = 'none';
+        
+        // วิ่งหาองค์ประกอบแม่ที่เป็นฉากหลังทึบแล้วซ่อนด้วย
+        let parent = loginModal.parentElement;
+        while (parent && parent !== document.body) {
+            if (parent.classList.contains('fixed') || parent.classList.contains('inset-0')) {
+                parent.classList.add('hidden');
+                parent.style.display = 'none';
+            }
+            parent = parent.parentElement;
+        }
+    }
+
+    // ปลดล็อกการคลิกหน้าจอทั้งหมด
+    document.body.style.pointerEvents = 'auto';
+
+    // สลับไปหน้าคลังอุปกรณ์
+    if (typeof switchView === 'function') {
+        switchView('catalog');
+    }
+}
+
+    // อัปเดตส่วนหัวของเว็บไซต์
+    const guestSection = document.getElementById('auth-guest-section');
+    const userSection = document.getElementById('auth-user-section');
+    if (guestSection) guestSection.classList.add('hidden');
+    if (userSection) userSection.classList.remove('hidden');
+
+    const userNameEl = document.getElementById('user-display-name');
+    const userAvatarEl = document.getElementById('user-avatar');
+    if (userNameEl) userNameEl.textContent = currentUser.name;
+    if (userAvatarEl) userAvatarEl.textContent = currentUser.name.charAt(0);
+
     // ปิดโมดัลล็อกอินอย่างปลอดภัย
     const loginModal = document.getElementById('loginModal') || document.getElementById('staff-login-modal');
     if (loginModal) {

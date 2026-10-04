@@ -659,6 +659,14 @@ function handleStaffLogin(event) {
     const loginModal = document.getElementById('staff-login-modal');
     if (loginModal) {
         loginModal.classList.add('hidden');
+        loginModal.style.display = 'none';
+    } else {
+        // กรณีหาไอดีไม่เจอ ให้ซ่อนตัวกล่อง modal ที่เป็น fixed ตัวแรกสุดแทน
+        const modalEl = document.querySelector('.fixed.inset-0, [class*="modal"]');
+        if (modalEl) {
+            modalEl.classList.add('hidden');
+            modalEl.style.display = 'none';
+        }
     }
 
     // 2. สลับหน้าจอมาที่หน้าแดชบอร์ดเจ้าหน้าที่ (หน้าที่ 2 / คลังอุปกรณ์)
@@ -666,12 +674,11 @@ function handleStaffLogin(event) {
         switchView('catalog');
     }
 
-    // 3. แสดงข้อความแจ้งเตือนสำเร็จ (ถ้ามีฟังก์ชัน showToast)
+    // 3. แสดงข้อความแจ้งเตือนสำเร็จ
     if (typeof showToast === 'function') {
         showToast('ยินดีต้อนรับเข้าสู่ระบบเจ้าหน้าที่ รพ.สต. ทับใต้');
     }
-} 
-        // Initial Mock Database for Equipment
+}
         let equipmentList = [
             { id: 'EQ-001', name: 'เตียงผู้ป่วย 3 ไทรกลไก พร้อมที่นอนลม', category: 'bedding', total: 15, available: 11, status: 'normal', image: 'fa-bed-pulse', desc: 'เตียงปรับระดับหัว-ท้ายเข่าได้ พร้อมที่นอนลมป้องกันแผลกดทับ' },
             { id: 'EQ-002', name: 'รถเข็นวีลแชร์ (Wheelchair) อลูมิเนียมพับได้', category: 'mobility', total: 25, available: 18, status: 'normal', image: 'fa-wheelchair', desc: 'น้ำหนักเบา พับเก็บใส่ท้ายรถได้สะดวก เบาะนั่งถอดซักได้' },

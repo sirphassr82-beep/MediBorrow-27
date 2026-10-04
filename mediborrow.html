@@ -651,7 +651,26 @@
 
     <!-- Application Logic Script -->
     <script>
-        
+       // ฟังก์ชันจัดการเมื่อคลิกปุ่มเข้าสู่ระบบเจ้าหน้าที่
+function handleStaffLogin(event) {
+    if (event) event.preventDefault(); // ป้องกันการรีเฟรชหน้าเว็บ
+
+    // 1. ซ่อนโมดัลเข้าสู่ระบบ
+    const loginModal = document.getElementById('staff-login-modal');
+    if (loginModal) {
+        loginModal.classList.add('hidden');
+    }
+
+    // 2. สลับหน้าจอมาที่หน้าแดชบอร์ดเจ้าหน้าที่ (หน้าที่ 2 / คลังอุปกรณ์)
+    if (typeof switchView === 'function') {
+        switchView('catalog');
+    }
+
+    // 3. แสดงข้อความแจ้งเตือนสำเร็จ (ถ้ามีฟังก์ชัน showToast)
+    if (typeof showToast === 'function') {
+        showToast('ยินดีต้อนรับเข้าสู่ระบบเจ้าหน้าที่ รพ.สต. ทับใต้');
+    }
+} 
         // Initial Mock Database for Equipment
         let equipmentList = [
             { id: 'EQ-001', name: 'เตียงผู้ป่วย 3 ไทรกลไก พร้อมที่นอนลม', category: 'bedding', total: 15, available: 11, status: 'normal', image: 'fa-bed-pulse', desc: 'เตียงปรับระดับหัว-ท้ายเข่าได้ พร้อมที่นอนลมป้องกันแผลกดทับ' },

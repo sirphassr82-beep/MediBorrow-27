@@ -655,12 +655,26 @@
 function handleStaffLogin(event) {
     if (event) event.preventDefault(); // ป้องกันการรีเฟรชหน้าเว็บ
 
-    // 1. ซ่อนโมดัลเข้าสู่ระบบ
-    const loginModal = document.getElementById('staff-login-modal');
-    if (loginModal) {
-        loginModal.classList.add('hidden');
+    // 1. ปิดหน้าต่างโมดัลล็อกอินทุกรูปแบบที่มีในหน้าเว็บ
+    const modals = document.querySelectorAll('[id*="login"], [id*="Modal"], [id*="modal"], .fixed');
+    modals.forEach(m => {
+        // เช็คว่าเป็นตัวโมดัลล็อกอิน (ไม่ใช่ toast แจ้งเตือน)
+        if (!m.id.includes('toast')) {
+            m.classList.add('hidden');
+            m.style.display = 'none';
+        }
+    });
+
+    // 2. สลับหน้าจอมาที่หน้าแดชบอร์ดเจ้าหน้าที่ (หน้าที่ 2 / คลังอุปกรณ์)
+    if (typeof switchView === 'function') {
+        switchView('catalog');
     }
 
+    // 3. แสดงข้อความแจ้งเตือนสำเร็จ
+    if (typeof showToast === 'function') {
+        showToast('ยินดีต้อนรับเข้าสู่ระบบเจ้าหน้าที่ รพ.สต. ทับใต้');
+    }
+}
     // 2. สลับหน้าจอมาที่หน้าแดชบอร์ดเจ้าหน้าที่ (หน้าที่ 2 / คลังอุปกรณ์)
     if (typeof switchView === 'function') {
         switchView('catalog');

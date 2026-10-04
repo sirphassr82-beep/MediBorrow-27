@@ -689,6 +689,7 @@ function handleStaffLogin(event) {
         showToast('ยินดีต้อนรับเข้าสู่ระบบเจ้าหน้าที่ รพ.สต. ทับใต้');
     }
 }
+
         let equipmentList = [
             { id: 'EQ-001', name: 'เตียงผู้ป่วย 3 ไทรกลไก พร้อมที่นอนลม', category: 'bedding', total: 15, available: 11, status: 'normal', image: 'fa-bed-pulse', desc: 'เตียงปรับระดับหัว-ท้ายเข่าได้ พร้อมที่นอนลมป้องกันแผลกดทับ' },
             { id: 'EQ-002', name: 'รถเข็นวีลแชร์ (Wheelchair) อลูมิเนียมพับได้', category: 'mobility', total: 25, available: 18, status: 'normal', image: 'fa-wheelchair', desc: 'น้ำหนักเบา พับเก็บใส่ท้ายรถได้สะดวก เบาะนั่งถอดซักได้' },
@@ -943,33 +944,55 @@ function handleStaffLogin(event) {
         }
 
         // Authentication Handlers
-        function handleLogin(event) {
-            event.preventDefault();
-            const role = document.getElementById('login-role').value;
-            const username = document.getElementById('login-username').value;
-            const pass = document.getElementById('login-password').value;
+       function handleLogin(event) {
+    if (event) event.preventDefault();
+    
+    const role = document.getElementById('login-role').value;
+    const username = document.getElementById('login-username').value;
+    const pass = document.getElementById('login-password').value;
 
-            if (role === 'staff') {
-                currentUser = { name: 'เจ้าหน้าที่ รพ.สต.', role: 'staff', idCard: username };
-                showToast('เข้าสู่ระบบเจ้าหน้าที่สำเร็จ');
-                document.getElementById('staff-action-btn').classList.remove('hidden');
-            } else {
-                if (username.length !== 13) {
-                    showToast('กรุณากรอกหมายเลขบัตรประชาชน 13 หลักให้ถูกต้อง', 'error');
-                    return;
-                }
-                currentUser = { name: 'คุณสมชาย ใจดี', role: 'patient', idCard: username, phone: '0812345678' };
-                showToast('เข้าสู่ระบบสำเร็จ');
-                document.getElementById('staff-action-btn').classList.add('hidden');
-            }
+    if (role === 'staff') {
+        currentUser = { name: 'นางสาวศิรภัสสร สา...', role: 'staff', idcard: username };
+        showToast('ยินดีต้อนรับเข้าสู่ระบบเจ้าหน้าที่ รพ.สต. ทับใต้');
+        
+        // แสดงปุ่มจัดการเฉพาะเจ้าหน้าที่
+        const staffActionBtn = document.getElementById('staff-action-btn');
+        if (staffActionBtn) staffActionBtn.classList.remove('hidden');
+    } else {
+        if (username.length !== 13) {
+            showToast('กรุณากรอกหมายเลขบัตรประชาชน 13 หลักให้ถูกต้อง', 'error');
+            return;
+        }
+        currentUser = { name: 'คุณสมชาย ใจดี', role: 'patient', idcard: username, phone: '0812345678' };
+        showToast('เข้าสู่ระบบสำเร็จ');
+        
+        const staffActionBtn = document.getElementById('staff-action-btn');
+        if (staffActionBtn) staffActionBtn.classList.add('hidden');
+    }
 
-            // Update Header UI
-            document.getElementById('auth-guest-section').classList.add('hidden');
-            document.getElementById('auth-user-section').classList.remove('hidden');
-            document.getElementById('user-display-name').textContent = currentUser.name;
-            document.getElementById('user-avatar').textContent = currentUser.name.charAt(0);
+    // อัปเดตส่วนหัวของเว็บไซต์ (ซ่อนเมนู Guest / แสดงเมนู User)
+    const guestSection = document.getElementById('auth-guest-section');
+    const userSection = document.getElementById('auth-user-section');
+    if (guestSection) guestSection.classList.add('hidden');
+    if (userSection) userSection.classList.remove('hidden');
 
-            closeModal('loginModal');
+    // อัปเดตชื่อและตัวอักษรย่อโปรไฟล์มุมขวาบน
+    const userNameEl = document.getElementById('user-display-name');
+    const userAvatarEl = document.getElementById('user-avatar');
+    if (userNameEl) userNameEl.textContent = currentUser.name;
+    if (userAvatarEl) userAvatarEl.textContent = currentUser.name.charAt(0);
+
+    // ปิดโมดัลล็อกอินและสลับไปหน้าคลังอุปกรณ์
+    const loginModal = document.getElementById('loginModal') || document.getElementById('staff-login-modal');
+    if (loginModal) {
+        const backdrop = loginModal.closest('.fixed') || loginModal;
+        backdrop.remove();
+    }
+
+    if (typeof switchView === 'function') {
+        switchView('catalog');
+    }
+}
         }
 
         function handleRegister(event) {

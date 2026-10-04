@@ -661,7 +661,6 @@ function handleStaffLogin(event) {
         loginModal.classList.add('hidden');
         loginModal.style.display = 'none';
     } else {
-        // กรณีหาไอดีไม่เจอ ให้ซ่อนตัวกล่อง modal ที่เป็น fixed ตัวแรกสุดแทน
         const modalEl = document.querySelector('.fixed.inset-0, [class*="modal"]');
         if (modalEl) {
             modalEl.classList.add('hidden');
@@ -669,15 +668,28 @@ function handleStaffLogin(event) {
         }
     }
 
-    // 2. สลับหน้าจอมาที่หน้าแดชบอร์ดเจ้าหน้าที่ (หน้าที่ 2 / คลังอุปกรณ์)
+    // 2. สลับหน้าจอมาที่หน้าแดชบอร์ดเจ้าหน้าที่ (คลังอุปกรณ์)
     if (typeof switchView === 'function') {
         switchView('catalog');
     }
 
-    // 3. แสดงข้อความแจ้งเตือนสำเร็จ
+    // 3. สลับแถบเมนูด้านบน (ซ่อนเมนูบุคคลทั่วไป / แสดงเมนูเจ้าหน้าที่)
+    const guestNav = document.getElementById('guest-nav');
+    const staffNav = document.getElementById('staff-nav');
+    if (guestNav) guestNav.classList.add('hidden');
+    if (staffNav) staffNav.classList.remove('hidden');
+
+    // 4. อัปเดตชื่อผู้ใช้เจ้าหน้าที่บนมุมขวาบน
+    const staffNameEl = document.getElementById('staff-name-display');
+    if (staffNameEl) {
+        staffNameEl.textContent = 'นางสาวศิรภัสสร สา...';
+    }
+
+    // 5. แสดงข้อความแจ้งเตือนสำเร็จ
     if (typeof showToast === 'function') {
         showToast('ยินดีต้อนรับเข้าสู่ระบบเจ้าหน้าที่ รพ.สต. ทับใต้');
     }
+}
 }
         let equipmentList = [
             { id: 'EQ-001', name: 'เตียงผู้ป่วย 3 ไทรกลไก พร้อมที่นอนลม', category: 'bedding', total: 15, available: 11, status: 'normal', image: 'fa-bed-pulse', desc: 'เตียงปรับระดับหัว-ท้ายเข่าได้ พร้อมที่นอนลมป้องกันแผลกดทับ' },

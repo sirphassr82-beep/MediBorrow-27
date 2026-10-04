@@ -944,7 +944,7 @@ function handleStaffLogin(event) {
         }
 
         // Authentication Handlers
-       function handleLogin(event) {
+      function handleLogin(event) {
     if (event) event.preventDefault();
     
     const role = document.getElementById('login-role').value;
@@ -955,7 +955,6 @@ function handleStaffLogin(event) {
         currentUser = { name: 'นางสาวศิรภัสสร สา...', role: 'staff', idcard: username };
         showToast('ยินดีต้อนรับเข้าสู่ระบบเจ้าหน้าที่ รพ.สต. ทับใต้');
         
-        // แสดงปุ่มจัดการเฉพาะเจ้าหน้าที่
         const staffActionBtn = document.getElementById('staff-action-btn');
         if (staffActionBtn) staffActionBtn.classList.remove('hidden');
     } else {
@@ -970,6 +969,32 @@ function handleStaffLogin(event) {
         if (staffActionBtn) staffActionBtn.classList.add('hidden');
     }
 
+    // อัปเดตส่วนหัวของเว็บไซต์
+    const guestSection = document.getElementById('auth-guest-section');
+    const userSection = document.getElementById('auth-user-section');
+    if (guestSection) guestSection.classList.add('hidden');
+    if (userSection) userSection.classList.remove('hidden');
+
+    const userNameEl = document.getElementById('user-display-name');
+    const userAvatarEl = document.getElementById('user-avatar');
+    if (userNameEl) userNameEl.textContent = currentUser.name;
+    if (userAvatarEl) userAvatarEl.textContent = currentUser.name.charAt(0);
+
+    // ปิดโมดัลล็อกอินอย่างปลอดภัย
+    const loginModal = document.getElementById('loginModal') || document.getElementById('staff-login-modal');
+    if (loginModal) {
+        const backdrop = loginModal.closest('.fixed') || loginModal;
+        backdrop.classList.add('hidden');
+        backdrop.style.display = 'none';
+        backdrop.style.pointerEvents = 'none';
+    }
+
+    document.body.style.pointerEvents = 'auto';
+
+    if (typeof switchView === 'function') {
+        switchView('catalog');
+    }
+}
     // อัปเดตส่วนหัวของเว็บไซต์ (ซ่อนเมนู Guest / แสดงเมนู User)
     const guestSection = document.getElementById('auth-guest-section');
     const userSection = document.getElementById('auth-user-section');
